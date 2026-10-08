@@ -1,0 +1,11 @@
+{% load i18n %}
+<section class="cta-panel overflow-hidden rounded-panel bg-ocean-900 px-6 py-10 text-white sm:px-10 sm:py-14 lg:px-14">
+  <div class="relative z-10 flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+    <div class="max-w-2xl">
+      {% if eyebrow %}<p class="eyebrow text-aqua-300">{% translate eyebrow %}</p>{% endif %}
+      <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">{% translate title %}</h2>
+      {% if description %}<p class="mt-4 max-w-xl text-sm leading-7 text-white/65 sm:text-base">{% translate description %}</p>{% endif %}
+    </div>
+    {% include "components/button.html" with href=href label=button_label|default:"Talk to our experts" variant="primary" arrow=True extra_class="hero-button-primary shrink-0" %}
+  </div>
+</section>

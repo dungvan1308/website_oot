@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="language-switcher" role="group" aria-label="{% translate 'Switch language' %}">
+  {% for language in language_switcher %}
+    {% if not forloop.first %}<span aria-hidden="true">|</span>{% endif %}
+    <a class="language-option{% if language.active %} is-active{% endif %}" href="{{ language.url }}" hreflang="{{ language.code }}" lang="{{ language.code }}"{% if language.active %} aria-current="page"{% endif %} aria-label="{% if language.code == 'vi' %}{% translate 'View this page in Vietnamese' %}{% else %}{% translate 'View this page in English' %}{% endif %}">
+      {% if language.code == 'vi' %}
+        <svg class="language-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" rx="2" fill="#da251d"/><path d="m15 3.2 1.45 4.45h4.68l-3.79 2.75 1.45 4.45L15 12.1l-3.79 2.75 1.45-4.45-3.79-2.75h4.68z" fill="#ff0"/></svg>
+        <span>VI</span>
+      {% else %}
+        <svg class="language-flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="m0 0 60 30M60 0 0 30"/><path stroke="#c8102e" stroke-width="2" d="m0 0 60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#c8102e" stroke-width="6" d="M30 0v30M0 15h60"/></svg>
+        <span>EN</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>
+

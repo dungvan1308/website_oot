@@ -1,0 +1,13 @@
+{% load i18n %}
+<section class="page-hero relative isolate overflow-hidden bg-ocean-950 text-white">
+  <div class="hero-grid absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="container-site relative grid gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_auto] lg:items-end lg:py-24">
+    <div class="max-w-3xl">
+      <nav aria-label="{% translate 'Breadcrumb' %}" class="mb-7 text-xs font-medium text-white/55"><a href="{{ site_urls.home }}" class="hover:text-aqua-300">{% translate "Home" %}</a><span class="mx-2" aria-hidden="true">/</span><span aria-current="page" class="text-white/85">{% translate breadcrumb_label|default:title %}</span></nav>
+      {% if eyebrow %}<p class="eyebrow text-aqua-300">{% translate eyebrow %}</p>{% endif %}
+      <h1 class="mt-5 font-display text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{% translate title %}</h1>
+      <p class="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{% translate description %}</p>
+    </div>
+    <a class="button-primary hero-button-primary shrink-0" href="{{ site_urls.contact }}">{% translate "Talk to our experts" %} <span aria-hidden="true">→</span></a>
+  </div>
+</section>

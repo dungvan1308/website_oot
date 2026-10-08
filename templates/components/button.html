@@ -1,0 +1,5 @@
+{% load i18n %}
+<a class="{% if variant == 'secondary' %}button-secondary{% else %}button-primary{% endif %}{% if extra_class %} {{ extra_class }}{% endif %}" href="{% if route_name %}{% url href %}{% else %}{{ href|default:'#' }}{% endif %}">
+  {% translate label|default:"Learn more" %}{% if arrow %}<span aria-hidden="true">→</span>{% endif %}
+</a>
+

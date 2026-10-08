@@ -1,0 +1,9 @@
+{% load i18n %}
+<article class="surface-card service-card h-full p-6 sm:p-7">
+  {% if image %}<img class="service-card-image" src="{{ image }}" alt="{{ image_alt|default:title }}" loading="lazy" width="48" height="48">{% else %}<span class="service-card-mark" aria-hidden="true">{{ mark|default:"↗" }}</span>{% endif %}
+  <h3 class="mt-6 font-display text-xl font-semibold tracking-tight text-ocean-950">{{ title }}</h3>
+  <p class="mt-3 text-sm leading-6 text-muted">{{ description }}</p>
+  {% if features %}<ul class="service-feature-list mt-5">{% for feature in features %}<li>{{ feature }}</li>{% endfor %}</ul>{% endif %}
+  {% if outcome %}<p class="mt-5 border-t border-line pt-4 text-sm font-medium leading-6 text-ocean-800">{{ outcome }}</p>{% endif %}
+  {% if href %}<a class="card-link mt-6" href="{{ href }}">{% translate "Explore service" %} <span aria-hidden="true">→</span></a>{% endif %}
+</article>

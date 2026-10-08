@@ -1,0 +1,716 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nLanguage: vi\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "A clear path from challenge to capability."
+msgstr "Lộ trình rõ ràng từ thách thức đến năng lực."
+
+msgid "A portfolio of platforms and solutions built to support connected operations and trusted insight."
+msgstr "Danh mục nền tảng và giải pháp hỗ trợ vận hành kết nối và thông tin đáng tin cậy."
+
+msgid "A product is a starting point."
+msgstr "Sản phẩm là điểm khởi đầu."
+
+msgid "A thoughtful first step begins here."
+msgstr "Bước đầu tiên bắt đầu từ đây."
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "About these examples:"
+msgstr "Về các ví dụ này:"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Align stakeholders on needs, dependencies and intended outcomes."
+msgstr "Thống nhất nhu cầu, phụ thuộc và kết quả mong muốn giữa các bên liên quan."
+
+msgid "All rights reserved."
+msgstr "Đã đăng ký bản quyền."
+
+msgid "Architecture"
+msgstr "Kiến trúc"
+
+msgid "Area of interest"
+msgstr "Lĩnh vực quan tâm"
+
+msgid "Banking technology"
+msgstr "Công nghệ ngân hàng"
+
+msgid "Breadcrumb"
+msgstr "Điều hướng phân cấp"
+
+msgid "Bring your next technology initiative into focus."
+msgstr "Đưa sáng kiến công nghệ tiếp theo của bạn vào trọng tâm."
+
+msgid "Built for complex, connected environments."
+msgstr "Dành cho môi trường phức tạp và kết nối."
+
+msgid "Business intelligence"
+msgstr "Phân tích kinh doanh"
+
+msgid "Business value:"
+msgstr "Giá trị kinh doanh:"
+
+msgid "Capability overview"
+msgstr "Tổng quan năng lực"
+
+msgid "Case Studies & Delivery Patterns"
+msgstr "Nghiên cứu tình huống và mô hình triển khai"
+
+msgid "Case Studies | Enterprise Transformation Patterns"
+msgstr "Nghiên cứu tình huống | Mô hình chuyển đổi doanh nghiệp"
+
+msgid "Case studies"
+msgstr "Nghiên cứu tình huống"
+
+msgid "Challenge"
+msgstr "Thách thức"
+
+msgid "Choose a capability area to explore the work, technologies and business outcomes it supports."
+msgstr "Chọn một lĩnh vực năng lực để tìm hiểu công việc, công nghệ và kết quả kinh doanh được hỗ trợ."
+
+msgid "Choose an area of interest"
+msgstr "Chọn lĩnh vực bạn quan tâm"
+
+msgid "Client engagement"
+msgstr "Dự án khách hàng"
+
+msgid "Close navigation menu"
+msgstr "Đóng menu điều hướng"
+
+msgid "Close selected enquiries"
+msgstr "Đóng các yêu cầu đã chọn"
+
+msgid "Closed"
+msgstr "Đã đóng"
+
+msgid "Cloud"
+msgstr "Đám mây"
+
+msgid "Cloud & digital transformation"
+msgstr "Chuyển đổi số và điện toán đám mây"
+
+msgid "Cloud transformation"
+msgstr "Chuyển đổi đám mây"
+
+msgid "Company"
+msgstr "Công ty"
+
+msgid "Company name"
+msgstr "Tên công ty"
+
+msgid "Concise guides for teams planning complex data and enterprise change."
+msgstr "Hướng dẫn ngắn gọn cho đội ngũ hoạch định thay đổi về dữ liệu và doanh nghiệp."
+
+msgid "Connect data, systems and teams around outcomes that matter."
+msgstr "Kết nối dữ liệu, hệ thống và đội ngũ quanh những kết quả quan trọng."
+
+msgid "Connect strategy, data and technology through solution patterns designed to fit your organization and evolve with it."
+msgstr "Kết nối chiến lược, dữ liệu và công nghệ bằng các mô hình giải pháp phù hợp và phát triển cùng tổ chức."
+
+msgid "Connected data layers supporting enterprise decisions"
+msgstr "Các lớp dữ liệu kết nối hỗ trợ quyết định doanh nghiệp"
+
+msgid "Contact"
+msgstr "Liên hệ"
+
+msgid "Contact | Talk to Our Enterprise Technology Team"
+msgstr "Liên hệ | Trao đổi với đội ngũ công nghệ doanh nghiệp"
+
+msgid "Core capability areas"
+msgstr "Các năng lực cốt lõi"
+
+msgid "Data platform"
+msgstr "Nền tảng dữ liệu"
+
+msgid "Data platforms"
+msgstr "Nền tảng dữ liệu"
+
+msgid "Deep expertise across data, enterprise software and cloud—connected around your business priorities."
+msgstr "Chuyên môn về dữ liệu, phần mềm doanh nghiệp và điện toán đám mây, gắn với ưu tiên kinh doanh của bạn."
+
+msgid "Define target architecture, delivery scope and an achievable roadmap."
+msgstr "Xác định kiến trúc mục tiêu, phạm vi triển khai và lộ trình khả thi."
+
+msgid "Deliver"
+msgstr "Triển khai"
+
+msgid "Design"
+msgstr "Thiết kế"
+
+msgid "Designed around the systems your business depends on."
+msgstr "Thiết kế xoay quanh những hệ thống doanh nghiệp đang phụ thuộc."
+
+msgid "Designed to fit"
+msgstr "Thiết kế phù hợp"
+
+msgid "Discover data warehouse, lakehouse, BI reporting, ERP, HR, CRM, banking data and SBV reporting products."
+msgstr "Khám phá sản phẩm kho dữ liệu, Lakehouse, báo cáo BI, ERP, nhân sự, CRM, dữ liệu ngân hàng và báo cáo NHNN."
+
+msgid "Discuss a solution"
+msgstr "Trao đổi về giải pháp"
+
+msgid "Discuss your project"
+msgstr "Trao đổi về dự án"
+
+msgid "Draft"
+msgstr "Bản nháp"
+
+msgid "Each entry identifies whether it is an illustrative scenario or a confirmed client engagement. Outcomes for illustrative scenarios are potential, not measured."
+msgstr "Mỗi nội dung cho biết đây là kịch bản minh họa hay dự án khách hàng đã xác nhận. Kết quả của kịch bản minh họa là tiềm năng, chưa được đo lường."
+
+msgid "Each entry is identified as illustrative or as a confirmed client engagement. Outcomes for illustrative scenarios describe potential impact, not measured project results."
+msgstr "Mỗi nội dung được ghi rõ là minh họa hay dự án khách hàng đã xác nhận. Kết quả trong kịch bản minh họa là tác động tiềm năng, không phải số liệu dự án đã đo lường."
+
+msgid "Each product area brings a focused set of capabilities, technology choices and business value."
+msgstr "Mỗi nhóm sản phẩm cung cấp năng lực, công nghệ và giá trị kinh doanh tập trung."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "English"
+msgstr "Tiếng Anh"
+
+msgid "Enterprise"
+msgstr "Doanh nghiệp"
+
+msgid "Enterprise Data, BI & Business Products"
+msgstr "Sản phẩm dữ liệu, BI và giải pháp doanh nghiệp"
+
+msgid "Enterprise Data, Banking & Cloud Solutions"
+msgstr "Giải pháp dữ liệu, ngân hàng và điện toán đám mây"
+
+msgid "Enterprise Solutions"
+msgstr "Giải pháp doanh nghiệp"
+
+msgid "Enterprise Technology & Data Transformation"
+msgstr "Giải pháp Công nghệ & Chuyển đổi Số"
+
+msgid "Enterprise Technology Services"
+msgstr "Dịch vụ công nghệ doanh nghiệp"
+
+msgid "Enterprise applications"
+msgstr "Ứng dụng doanh nghiệp"
+
+msgid "Enterprise challenges, solved step by step."
+msgstr "Giải quyết thách thức doanh nghiệp theo từng bước."
+
+msgid "Enterprise software"
+msgstr "Phần mềm doanh nghiệp"
+
+msgid "Enterprise technology, data platforms and digital transformation for organizations building what comes next."
+msgstr "Công nghệ doanh nghiệp, nền tảng dữ liệu và chuyển đổi số cho các tổ chức kiến tạo tương lai."
+
+msgid "Every sector has its own systems, regulations and operating realities. We bring relevant data and enterprise capabilities to those specific contexts."
+msgstr "Mỗi ngành có hệ thống, quy định và thực tế vận hành riêng. Chúng tôi đưa năng lực dữ liệu và doanh nghiệp phù hợp vào từng bối cảnh."
+
+msgid "Every transformation starts with its own context."
+msgstr "Mỗi hành trình chuyển đổi bắt đầu từ bối cảnh riêng."
+
+msgid "Expertise for your next enterprise transformation."
+msgstr "Năng lực cho bước chuyển đổi doanh nghiệp tiếp theo."
+
+msgid "Explore"
+msgstr "Khám phá"
+
+msgid "Explore a product"
+msgstr "Khám phá sản phẩm"
+
+msgid "Explore data platform, business intelligence, enterprise software, banking technology and cloud transformation services."
+msgstr "Khám phá dịch vụ nền tảng dữ liệu, phân tích kinh doanh, phần mềm doanh nghiệp, công nghệ ngân hàng và chuyển đổi đám mây."
+
+msgid "Explore data, business intelligence, enterprise software, banking technology and cloud transformation services."
+msgstr "Khám phá dịch vụ dữ liệu, phân tích kinh doanh, phần mềm doanh nghiệp, công nghệ ngân hàng và chuyển đổi đám mây."
+
+msgid "Explore enterprise data, lakehouse, BI, management, banking reporting, core banking migration and cloud transformation solutions."
+msgstr "Khám phá giải pháp dữ liệu doanh nghiệp, Lakehouse, BI, quản trị, báo cáo ngân hàng, chuyển đổi ngân hàng lõi và đám mây."
+
+msgid "Explore enterprise platforms and solutions for data, reporting, business applications and banking technology."
+msgstr "Khám phá nền tảng và giải pháp về dữ liệu, báo cáo, ứng dụng doanh nghiệp và công nghệ ngân hàng."
+
+msgid "Explore illustrative enterprise architecture scenarios across banking data, lakehouse platforms and management BI."
+msgstr "Khám phá các kịch bản kiến trúc doanh nghiệp minh họa về dữ liệu ngân hàng, Lakehouse và BI quản trị."
+
+msgid "Explore industries"
+msgstr "Khám phá các ngành"
+
+msgid "Explore our solutions"
+msgstr "Khám phá giải pháp"
+
+msgid "Explore platforms and business solutions that help connect operations, data and insight across your organization."
+msgstr "Khám phá nền tảng và giải pháp kết nối vận hành, dữ liệu và thông tin trên toàn tổ chức."
+
+msgid "Explore practical considerations for building data foundations, modernizing banking systems and improving business reporting."
+msgstr "Tìm hiểu các cân nhắc thực tiễn khi xây dựng nền tảng dữ liệu, hiện đại hóa hệ thống ngân hàng và cải thiện báo cáo kinh doanh."
+
+msgid "Explore products"
+msgstr "Khám phá sản phẩm"
+
+msgid "Explore representative delivery patterns across data platforms, banking technology and business reporting."
+msgstr "Khám phá các mô hình triển khai tiêu biểu về nền tảng dữ liệu, công nghệ ngân hàng và báo cáo kinh doanh."
+
+msgid "Explore service"
+msgstr "Khám phá dịch vụ"
+
+msgid "Explore services"
+msgstr "Khám phá dịch vụ"
+
+msgid "Explore solution"
+msgstr "Khám phá giải pháp"
+
+msgid "Explore solution areas spanning data platforms, enterprise applications, banking technology and cloud."
+msgstr "Khám phá giải pháp về nền tảng dữ liệu, ứng dụng doanh nghiệp, công nghệ ngân hàng và điện toán đám mây."
+
+msgid "Explore technology and data capabilities for banking, financial services, public sector and complex enterprise environments."
+msgstr "Khám phá năng lực công nghệ và dữ liệu cho ngân hàng, dịch vụ tài chính, khu vực công và doanh nghiệp phức tạp."
+
+msgid "Explore the challenge, solution, architecture, technology, implementation and potential business impact across representative scenarios."
+msgstr "Khám phá thách thức, giải pháp, kiến trúc, công nghệ, triển khai và tác động kinh doanh tiềm năng qua các kịch bản tiêu biểu."
+
+msgid "Explore the priorities and solution areas that often matter across these environments."
+msgstr "Khám phá các ưu tiên và nhóm giải pháp thường cần thiết trong những môi trường này."
+
+msgid "Explore the service areas that support data, applications, banking technology and cloud transformation."
+msgstr "Khám phá các dịch vụ về dữ liệu, ứng dụng, công nghệ ngân hàng và chuyển đổi đám mây."
+
+msgid "Fields marked with"
+msgstr "Các trường có dấu"
+
+msgid "Find your starting point"
+msgstr "Tìm điểm khởi đầu"
+
+msgid "Fit your current landscape"
+msgstr "Phù hợp với hệ thống hiện tại"
+
+msgid "Focus areas"
+msgstr "Lĩnh vực trọng tâm"
+
+msgid "Focused services. Connected outcomes."
+msgstr "Dịch vụ tập trung. Kết quả kết nối."
+
+msgid "Footer navigation"
+msgstr "Điều hướng chân trang"
+
+msgid "From trusted data foundations to connected enterprise applications, bring the right capabilities together around your business priorities."
+msgstr "Từ nền tảng dữ liệu tin cậy đến ứng dụng doanh nghiệp kết nối, tập hợp đúng năng lực theo ưu tiên kinh doanh."
+
+msgid "Get to know us"
+msgstr "Tìm hiểu về chúng tôi"
+
+msgid "Home"
+msgstr "Trang chủ"
+
+msgid "How can we help?"
+msgstr "Chúng tôi có thể hỗ trợ gì?"
+
+msgid "How products fit"
+msgstr "Sản phẩm phù hợp ra sao"
+
+msgid "How we help"
+msgstr "Cách chúng tôi hỗ trợ"
+
+msgid "I agree that my details may be used to respond to this enquiry."
+msgstr "Tôi đồng ý để thông tin của mình được sử dụng nhằm phản hồi yêu cầu này."
+
+msgid "INDUSTRY"
+msgstr "NGÀNH"
+
+msgid "Ideas & perspectives"
+msgstr "Ý tưởng và góc nhìn"
+
+msgid "Ideas for your next transformation decision."
+msgstr "Góc nhìn cho quyết định chuyển đổi tiếp theo."
+
+msgid "Illustrative"
+msgstr "Minh họa"
+
+msgid "Illustrative challenge-to-impact patterns for enterprise data, banking and BI transformation."
+msgstr "Mô hình minh họa từ thách thức đến tác động trong chuyển đổi dữ liệu doanh nghiệp, ngân hàng và BI."
+
+msgid "Illustrative scenario"
+msgstr "Kịch bản minh họa"
+
+msgid "Implement in manageable stages with quality, security and knowledge transfer in view."
+msgstr "Triển khai theo từng giai đoạn có thể quản lý, chú trọng chất lượng, bảo mật và chuyển giao kiến thức."
+
+msgid "Implementation"
+msgstr "Triển khai"
+
+msgid "Implementation can include configuration, integration, data migration, reporting, governance and support planning as needed."
+msgstr "Tùy nhu cầu, triển khai có thể bao gồm cấu hình, tích hợp, chuyển đổi dữ liệu, báo cáo, quản trị và kế hoạch hỗ trợ."
+
+msgid "In progress"
+msgstr "Đang xử lý"
+
+msgid "Industries"
+msgstr "Ngành"
+
+msgid "Industries | Enterprise Technology & Data"
+msgstr "Ngành | Công nghệ doanh nghiệp và dữ liệu"
+
+msgid "Insights"
+msgstr "Góc nhìn"
+
+msgid "Insights | Data, Banking & Business Intelligence"
+msgstr "Góc nhìn | Dữ liệu, ngân hàng và phân tích kinh doanh"
+
+msgid "Keep data and governance connected"
+msgstr "Kết nối dữ liệu với quản trị"
+
+msgid "Keep exploring"
+msgstr "Tiếp tục khám phá"
+
+msgid "Latest insights"
+msgstr "Góc nhìn mới nhất"
+
+msgid "Learn about our enterprise technology and data transformation focus."
+msgstr "Tìm hiểu về năng lực công nghệ doanh nghiệp và chuyển đổi dữ liệu của chúng tôi."
+
+msgid "Learn more"
+msgstr "Tìm hiểu thêm"
+
+msgid "Let's explore what transformation could mean for you."
+msgstr "Cùng tìm hiểu chuyển đổi có thể mang lại điều gì cho bạn."
+
+msgid "Let's shape a solution around your priorities."
+msgstr "Cùng xây dựng giải pháp theo ưu tiên của bạn."
+
+msgid "Let's talk"
+msgstr "Trao đổi với chúng tôi"
+
+msgid "Let's work together"
+msgstr "Cùng hợp tác"
+
+msgid "Let’s talk about your data, systems and the outcomes you need to deliver."
+msgstr "Hãy trao đổi về dữ liệu, hệ thống và kết quả bạn cần đạt được."
+
+msgid "Make the next technology decision with more context."
+msgstr "Đưa ra quyết định công nghệ tiếp theo với đầy đủ bối cảnh hơn."
+
+msgid "Mark selected enquiries as in progress"
+msgstr "Đánh dấu các yêu cầu đã chọn là đang xử lý"
+
+msgid "Mobile navigation"
+msgstr "Điều hướng trên di động"
+
+msgid "Name"
+msgstr "Họ và tên"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "Open navigation menu"
+msgstr "Mở menu điều hướng"
+
+msgid "Operations"
+msgstr "Vận hành"
+
+msgid "Optional"
+msgstr "Không bắt buộc"
+
+msgid "Other"
+msgstr "Khác"
+
+msgid "Our approach"
+msgstr "Cách tiếp cận"
+
+msgid "Our capabilities"
+msgstr "Năng lực của chúng tôi"
+
+msgid "Our focus"
+msgstr "Trọng tâm"
+
+msgid "Our mission"
+msgstr "Sứ mệnh"
+
+msgid "Our services"
+msgstr "Dịch vụ của chúng tôi"
+
+msgid "Our solution patterns provide a foundation. Scope, platform choices and delivery sequencing are shaped with your teams and existing environment."
+msgstr "Mô hình giải pháp tạo nền tảng ban đầu. Phạm vi, nền tảng và trình tự triển khai được thiết kế cùng đội ngũ và môi trường hiện tại."
+
+msgid "Our vision"
+msgstr "Tầm nhìn"
+
+msgid "Perspectives on data platforms, enterprise systems and the work of making change stick."
+msgstr "Góc nhìn về nền tảng dữ liệu, hệ thống doanh nghiệp và cách duy trì thay đổi hiệu quả."
+
+msgid "Perspectives on data platforms, enterprise systems and transformation decisions."
+msgstr "Góc nhìn về nền tảng dữ liệu, hệ thống doanh nghiệp và quyết định chuyển đổi."
+
+msgid "Phone"
+msgstr "Điện thoại"
+
+msgid "Plan for adoption and change"
+msgstr "Lập kế hoạch ứng dụng và thay đổi"
+
+msgid "Platform selection depends on your architecture, constraints and goals. These are technologies across our ecosystem—not claims of official partnership."
+msgstr "Lựa chọn nền tảng phụ thuộc kiến trúc, giới hạn và mục tiêu. Đây là các công nghệ trong hệ sinh thái, không phải tuyên bố quan hệ đối tác chính thức."
+
+msgid "Please add a little more detail (at least 20 characters)."
+msgstr "Vui lòng cung cấp thêm chi tiết (ít nhất 20 ký tự)."
+
+msgid "Please do not include passwords, financial account numbers or other sensitive personal information."
+msgstr "Vui lòng không gửi mật khẩu, số tài khoản tài chính hoặc thông tin cá nhân nhạy cảm khác."
+
+msgid "Portfolio"
+msgstr "Danh mục"
+
+msgid "Potential business impact"
+msgstr "Tác động kinh doanh tiềm năng"
+
+msgid "Practical architectures for complex business needs."
+msgstr "Kiến trúc thực tiễn cho nhu cầu kinh doanh phức tạp."
+
+msgid "Practical architectures for modern data, management and banking needs."
+msgstr "Kiến trúc thực tiễn cho nhu cầu dữ liệu, quản trị và ngân hàng hiện đại."
+
+msgid "Practical data, enterprise management, banking and cloud solutions shaped around your operating needs."
+msgstr "Giải pháp thực tiễn về dữ liệu, quản trị doanh nghiệp, ngân hàng và đám mây theo nhu cầu vận hành."
+
+msgid "Practical perspectives on enterprise data foundations, core banking migration and shared KPI reporting."
+msgstr "Góc nhìn thực tiễn về nền tảng dữ liệu doanh nghiệp, chuyển đổi ngân hàng lõi và báo cáo KPI thống nhất."
+
+msgid "Primary navigation"
+msgstr "Điều hướng chính"
+
+msgid "Products"
+msgstr "Sản phẩm"
+
+msgid "Products & Platforms"
+msgstr "Sản phẩm và nền tảng"
+
+msgid "Products & platforms"
+msgstr "Sản phẩm và nền tảng"
+
+msgid "Published"
+msgstr "Đã xuất bản"
+
+msgid "Purpose-built foundations for enterprise work."
+msgstr "Nền tảng chuyên biệt cho hoạt động doanh nghiệp."
+
+msgid "Read article"
+msgstr "Đọc bài viết"
+
+msgid "Read case study"
+msgstr "Đọc nghiên cứu tình huống"
+
+msgid "Ready to move your enterprise forward?"
+msgstr "Sẵn sàng đưa doanh nghiệp tiến lên?"
+
+msgid "Related solutions"
+msgstr "Giải pháp liên quan"
+
+msgid "See how a platform can fit your environment."
+msgstr "Tìm hiểu cách nền tảng phù hợp với môi trường của bạn."
+
+msgid "See related solutions"
+msgstr "Xem giải pháp liên quan"
+
+msgid "Send an enquiry"
+msgstr "Gửi yêu cầu"
+
+msgid "Send enquiry"
+msgstr "Gửi yêu cầu"
+
+msgid "Services"
+msgstr "Dịch vụ"
+
+msgid "Share a little about your organization and the challenge you want to solve. Our team will use your details to respond to your enquiry."
+msgstr "Chia sẻ đôi chút về tổ chức và thách thức bạn muốn giải quyết. Đội ngũ sẽ sử dụng thông tin để phản hồi yêu cầu của bạn."
+
+msgid "Share the challenge you are solving and we can explore the right path together."
+msgstr "Chia sẻ thách thức bạn đang giải quyết để chúng ta cùng tìm hướng đi phù hợp."
+
+msgid "Share your operating context and priorities; we can explore relevant architecture and delivery options."
+msgstr "Chia sẻ bối cảnh vận hành và ưu tiên để cùng tìm hiểu kiến trúc và phương án triển khai phù hợp."
+
+msgid "Skip to main content"
+msgstr "Chuyển đến nội dung chính"
+
+msgid "Solution"
+msgstr "Giải pháp"
+
+msgid "Solution portfolio"
+msgstr "Danh mục giải pháp"
+
+msgid "Solutions"
+msgstr "Giải pháp"
+
+msgid "Start a conversation"
+msgstr "Bắt đầu trao đổi"
+
+msgid "Start a conversation about your enterprise technology and data transformation priorities."
+msgstr "Bắt đầu trao đổi về ưu tiên công nghệ doanh nghiệp và chuyển đổi dữ liệu của bạn."
+
+msgid "Start with the architecture your organization needs."
+msgstr "Bắt đầu từ kiến trúc tổ chức cần có."
+
+msgid "Start with the business context."
+msgstr "Bắt đầu từ bối cảnh kinh doanh."
+
+msgid "Start with your goals, your operating context and the systems you rely on."
+msgstr "Bắt đầu từ mục tiêu, bối cảnh vận hành và các hệ thống bạn đang sử dụng."
+
+msgid "Switch language"
+msgstr "Chuyển ngôn ngữ"
+
+msgid "Systems"
+msgstr "Hệ thống"
+
+msgid "Talk through the realities of your environment."
+msgstr "Cùng trao đổi về thực tế môi trường của bạn."
+
+msgid "Talk to Our Experts"
+msgstr "Trao đổi với chuyên gia"
+
+msgid "Talk to our experts"
+msgstr "Trao đổi với chuyên gia"
+
+msgid "Talk to us about requirements, architecture and a practical implementation path."
+msgstr "Trao đổi với chúng tôi về yêu cầu, kiến trúc và lộ trình triển khai thực tiễn."
+
+msgid "Talk with our team about the challenge, systems and outcomes behind your initiative."
+msgstr "Trao đổi với đội ngũ về thách thức, hệ thống và kết quả của sáng kiến."
+
+msgid "Talk with our team about the systems, data and outcomes you are working toward."
+msgstr "Trao đổi với đội ngũ về hệ thống, dữ liệu và kết quả bạn đang hướng tới."
+
+msgid "Technologies"
+msgstr "Công nghệ"
+
+msgid "Technologies we work with."
+msgstr "Các công nghệ chúng tôi sử dụng."
+
+msgid "Technology"
+msgstr "Công nghệ"
+
+msgid "Technology capabilities shaped for sector needs, operating models and complex systems."
+msgstr "Năng lực công nghệ phù hợp với nhu cầu ngành, mô hình vận hành và hệ thống phức tạp."
+
+msgid "Technology ecosystem"
+msgstr "Hệ sinh thái công nghệ"
+
+msgid "Technology expertise across the enterprise."
+msgstr "Chuyên môn công nghệ trên toàn doanh nghiệp."
+
+msgid "Technology foundations, ready to fit your enterprise."
+msgstr "Nền tảng công nghệ sẵn sàng phù hợp với doanh nghiệp."
+
+msgid "Technology shaped around your industry."
+msgstr "Công nghệ phù hợp với ngành của bạn."
+
+msgid "Technology with intent"
+msgstr "Công nghệ hướng đến giá trị"
+
+msgid "Tell us a little about what you are working on."
+msgstr "Chia sẻ đôi chút về công việc hoặc dự án của bạn."
+
+msgid "Tell us about your data, enterprise software, banking technology or cloud transformation priorities."
+msgstr "Chia sẻ ưu tiên của bạn về dữ liệu, phần mềm doanh nghiệp, công nghệ ngân hàng hoặc chuyển đổi đám mây."
+
+msgid "Tell us what you are working toward."
+msgstr "Chia sẻ mục tiêu bạn đang hướng tới."
+
+msgid "Thanks for getting in touch. Your enquiry has been received."
+msgstr "Cảm ơn bạn đã liên hệ. Chúng tôi đã nhận được yêu cầu."
+
+msgid "The capabilities to move from complexity to clarity."
+msgstr "Năng lực giúp chuyển từ phức tạp đến rõ ràng."
+
+msgid "The path from enterprise challenge to lasting capability."
+msgstr "Lộ trình từ thách thức doanh nghiệp đến năng lực bền vững."
+
+msgid "Tools for connected data and operations."
+msgstr "Công cụ kết nối dữ liệu và vận hành."
+
+msgid "Understand"
+msgstr "Thấu hiểu"
+
+msgid "Understand the context. Build for what comes next."
+msgstr "Thấu hiểu bối cảnh. Xây dựng cho chặng đường tiếp theo."
+
+msgid "Useful perspectives for the work ahead."
+msgstr "Góc nhìn hữu ích cho chặng đường phía trước."
+
+msgid "Vietnamese"
+msgstr "Tiếng Việt"
+
+msgid "View all solutions"
+msgstr "Xem tất cả giải pháp"
+
+msgid "View case studies"
+msgstr "Xem nghiên cứu tình huống"
+
+msgid "View this page in English"
+msgstr "Xem trang này bằng tiếng Anh"
+
+msgid "View this page in Vietnamese"
+msgstr "Xem trang này bằng tiếng Việt"
+
+msgid "Visit insights"
+msgstr "Xem các góc nhìn"
+
+msgid "We assess your environment, requirements and existing platforms before recommending a fit. Technology choices are made for the use case—not for a logo wall."
+msgstr "Chúng tôi đánh giá môi trường, yêu cầu và nền tảng hiện có trước khi đề xuất. Công nghệ được chọn theo nhu cầu sử dụng, không theo danh sách thương hiệu."
+
+msgid "We can help connect the strategic questions to an achievable technology path."
+msgstr "Chúng tôi có thể kết nối câu hỏi chiến lược với lộ trình công nghệ khả thi."
+
+msgid "We help enterprises shape trusted data platforms and technology foundations for lasting transformation."
+msgstr "Chúng tôi giúp doanh nghiệp xây dựng nền tảng dữ liệu tin cậy và nền tảng công nghệ cho chuyển đổi bền vững."
+
+msgid "We select the right tools for your architecture, existing systems and long-term goals."
+msgstr "Chúng tôi lựa chọn công nghệ phù hợp với kiến trúc, hệ thống hiện có và mục tiêu dài hạn của bạn."
+
+msgid "We shape delivery around your current systems, constraints and goals—then build a practical path from architecture to adoption."
+msgstr "Chúng tôi xây dựng lộ trình dựa trên hệ thống, giới hạn và mục tiêu hiện tại, từ kiến trúc đến ứng dụng thực tế."
+
+msgid "We use the details you provide to understand and respond to your request."
+msgstr "Chúng tôi sử dụng thông tin bạn cung cấp để hiểu và phản hồi yêu cầu."
+
+msgid "We work across sectors where dependable data and enterprise systems make a meaningful difference."
+msgstr "Chúng tôi đồng hành cùng các ngành nơi dữ liệu và hệ thống doanh nghiệp đáng tin cậy tạo nên khác biệt."
+
+msgid "What we do"
+msgstr "Năng lực của chúng tôi"
+
+msgid "Where we focus"
+msgstr "Lĩnh vực trọng tâm"
+
+msgid "Whether you are planning a data platform, modernizing enterprise applications or working through a banking technology initiative, tell us what matters most."
+msgstr "Dù bạn đang hoạch định nền tảng dữ liệu, hiện đại hóa ứng dụng hay triển khai sáng kiến công nghệ ngân hàng, hãy cho chúng tôi biết điều quan trọng nhất."
+
+msgid "Work email"
+msgstr "Email công việc"
+
+msgid "Working through a similar question?"
+msgstr "Bạn đang giải quyết vấn đề tương tự?"
+
+msgid "Your challenge"
+msgstr "Thách thức của bạn"
+
+msgid "Your industry context"
+msgstr "Bối cảnh ngành của bạn"
+
+msgid "Your information stays focused on this enquiry."
+msgstr "Thông tin của bạn chỉ được dùng cho yêu cầu này."
+
+msgid "Your name"
+msgstr "Họ và tên"
+
+msgid "are required."
+msgstr "là bắt buộc."
+
+msgid "data core"
+msgstr "lõi dữ liệu"
+
+msgid "home"
+msgstr "trang chủ"
+
+msgid "optional"
+msgstr "không bắt buộc"
+
+msgid "you@company.com"
+msgstr "ban@congty.com"

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Enterprise Technology Services" %}{% endblock %}
+{% block meta_description %}{% translate "Explore data platform, business intelligence, enterprise software, banking technology and cloud transformation services." %}{% endblock %}
+{% block og_title %}{% translate "Enterprise Technology Services" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Explore data, business intelligence, enterprise software, banking technology and cloud transformation services." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Services" eyebrow="Our services" title="Expertise for your next enterprise transformation." description="From trusted data foundations to connected enterprise applications, bring the right capabilities together around your business priorities." %}
+  <section class="container-site py-16 sm:py-24">
+    <div class="max-w-3xl">
+      {% include "components/section_heading.html" with eyebrow="How we help" title="Focused services. Connected outcomes." description="Choose a capability area to explore the work, technologies and business outcomes it supports." %}
+    </div>
+    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+      {% for service in service_groups %}
+        <div id="{{ service.id }}" class="scroll-mt-8">
+          {% include "components/service_card.html" with title=service.title description=service.description mark=service.mark features=service.features outcome=service.outcome href=site_urls.contact image=service.image image_alt=service.image_alt %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="bg-white py-16 sm:py-20">
+    <div class="container-site grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div>{% include "components/section_heading.html" with eyebrow="Our approach" title="Start with the business context." description="We shape delivery around your current systems, constraints and goals—then build a practical path from architecture to adoption." %}</div>
+      <ol class="approach-list">
+        <li><span>01</span><div><h3>{% translate "Understand" %}</h3><p>{% translate "Align stakeholders on needs, dependencies and intended outcomes." %}</p></div></li>
+        <li><span>02</span><div><h3>{% translate "Design" %}</h3><p>{% translate "Define target architecture, delivery scope and an achievable roadmap." %}</p></div></li>
+        <li><span>03</span><div><h3>{% translate "Deliver" %}</h3><p>{% translate "Implement in manageable stages with quality, security and knowledge transfer in view." %}</p></div></li>
+      </ol>
+    </div>
+  </section>
+  <section class="container-site py-16 sm:py-24">{% include "components/cta.html" with eyebrow="Let's work together" title="Bring your next technology initiative into focus." description="Talk with our team about the systems, data and outcomes you are working toward." href=site_urls.contact button_label="Talk to our experts" %}</section>
+{% endblock %}

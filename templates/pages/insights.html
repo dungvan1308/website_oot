@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Insights | Data, Banking & Business Intelligence" %}{% endblock %}
+{% block meta_description %}{% translate "Practical perspectives on enterprise data foundations, core banking migration and shared KPI reporting." %}{% endblock %}
+{% block og_title %}{% translate "Insights" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Perspectives on data platforms, enterprise systems and transformation decisions." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Insights" eyebrow="Ideas & perspectives" title="Useful perspectives for the work ahead." description="Explore practical considerations for building data foundations, modernizing banking systems and improving business reporting." %}
+  <section class="container-site py-16 sm:py-24">
+    <div class="max-w-3xl">{% include "components/section_heading.html" with eyebrow="Latest insights" title="Make the next technology decision with more context." description="Concise guides for teams planning complex data and enterprise change." %}</div>
+    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+      {% for article in insights %}
+        <article class="insight-card" id="{{ article.id }}">
+          <div class="flex flex-wrap items-center justify-between gap-3"><span class="insight-category">{{ article.category }}</span><span class="text-xs font-medium text-muted">{{ article.reading_time }}</span></div>
+          <h2 class="mt-4 font-display text-2xl font-semibold leading-snug tracking-tight text-ocean-950">{{ article.title }}</h2>
+          <p class="mt-3 text-sm leading-6 text-muted">{{ article.summary }}</p>
+          <div class="insight-body mt-7">{{ article.content|linebreaks }}</div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="container-site pb-16 sm:pb-24">{% include "components/cta.html" with eyebrow="Keep exploring" title="Working through a similar question?" description="We can help connect the strategic questions to an achievable technology path." href=site_urls.contact button_label="Talk to our experts" %}</section>
+{% endblock %}

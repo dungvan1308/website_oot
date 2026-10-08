@@ -1,0 +1,10 @@
+{% load i18n %}
+<article class="surface-card product-card flex h-full flex-col p-6 sm:p-7">
+  {% if image %}<img class="product-card-image" src="{{ image }}" alt="{{ image_alt|default:title }}" loading="lazy" width="48" height="48">{% else %}<div class="product-card-icon" aria-hidden="true">{{ mark|default:"◎" }}</div>{% endif %}
+  <h3 class="mt-5 font-display text-xl font-semibold tracking-tight text-ocean-950">{{ title }}</h3>
+  <p class="mt-3 flex-1 text-sm leading-6 text-muted">{{ description }}</p>
+  {% if technology %}<p class="mt-5 border-t border-line pt-4 text-xs font-medium text-ocean-600">{{ technology }}</p>{% endif %}
+  {% if features %}<ul class="product-feature-list mt-4">{% for feature in features %}<li>{{ feature }}</li>{% endfor %}</ul>{% endif %}
+  {% if value %}<p class="mt-4 text-sm leading-6 text-ink"><span class="font-semibold text-ocean-800">{% translate "Business value:" %}</span> {{ value }}</p>{% endif %}
+  {% if href %}<a class="card-link mt-5" href="{{ href }}">{% translate "Learn more" %} <span aria-hidden="true">→</span></a>{% endif %}
+</article>

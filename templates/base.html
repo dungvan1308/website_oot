@@ -1,0 +1,40 @@
+{% load i18n static %}<!doctype html>
+<html lang="{{ current_language|default:request.LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#061426">
+    <title>{% if seo_setting and seo_setting.title %}{{ seo_setting.title }}{% else %}{% block title %}Enterprise Technology &amp; Data Transformation{% endblock %}{% endif %} | {{ site_name }}</title>
+    <meta name="description" content="{% if seo_setting and seo_setting.meta_description %}{{ seo_setting.meta_description }}{% elif site_settings and site_settings.default_meta_description %}{{ site_settings.default_meta_description }}{% else %}{% block meta_description %}{% translate 'Enterprise technology, data platforms and digital transformation for organizations building what comes next.' %}{% endblock %}{% endif %}">
+    <link rel="canonical" href="{% if seo_setting and seo_setting.canonical_url %}{{ seo_setting.canonical_url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endif %}">
+    {% if seo_setting and not seo_setting.allow_indexing %}<meta name="robots" content="noindex,nofollow">{% else %}<meta name="robots" content="index,follow">{% endif %}
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:locale" content="{% if current_language == 'vi' %}vi_VN{% else %}en_US{% endif %}">
+    <meta property="og:title" content="{% if seo_setting and seo_setting.title %}{{ seo_setting.title }} | {{ site_name }}{% else %}{% block og_title %}Enterprise Technology &amp; Data Transformation | {{ site_name }}{% endblock %}{% endif %}">
+    <meta property="og:description" content="{% if seo_setting and seo_setting.meta_description %}{{ seo_setting.meta_description }}{% elif site_settings and site_settings.default_meta_description %}{{ site_settings.default_meta_description }}{% else %}{% block og_description %}{% translate 'Enterprise technology, data platforms and digital transformation for organizations building what comes next.' %}{% endblock %}{% endif %}">
+    <meta property="og:url" content="{% if seo_setting and seo_setting.canonical_url %}{{ seo_setting.canonical_url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endif %}">
+    {% for alternate in language_alternates %}<link rel="alternate" hreflang="{{ alternate.code }}" href="{{ alternate.url }}">{% endfor %}
+    {% if language_alternates %}<link rel="alternate" hreflang="x-default" href="{{ language_alternates.0.url }}">{% endif %}
+    {% if seo_setting and seo_setting.og_image %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ seo_setting.og_image.url }}">{% endif %}
+    <meta name="twitter:card" content="{% if seo_setting and seo_setting.og_image %}summary_large_image{% else %}summary{% endif %}">
+    <meta name="twitter:title" content="{% if seo_setting and seo_setting.title %}{{ seo_setting.title }} | {{ site_name }}{% else %}{{ site_name }}{% endif %}">
+    <meta name="twitter:description" content="{% if seo_setting and seo_setting.meta_description %}{{ seo_setting.meta_description }}{% elif site_settings and site_settings.default_meta_description %}{{ site_settings.default_meta_description }}{% endif %}">
+    {% if seo_setting and seo_setting.og_image %}<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ seo_setting.og_image.url }}">{% endif %}
+    {% block extra_meta %}{% endblock %}
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{% translate "Skip to main content" %}</a>
+    {% include "partials/navbar.html" %}
+    {% include "partials/messages.html" %}
+    <main id="main-content" tabindex="-1">
+      {% block content %}{% endblock %}
+    </main>
+    {% include "partials/footer.html" %}
+    <script src="{% static 'js/site.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

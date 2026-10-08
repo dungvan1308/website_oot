@@ -1,0 +1,5 @@
+{% load i18n %}
+{% for item in nav_items %}
+  <a class="nav-link{% if nav_variant == 'mobile' %} nav-link-mobile{% endif %}" href="{{ item.href }}"{% if request.path == item.href %} aria-current="page"{% endif %}>{% translate item.label %}</a>
+{% endfor %}
+

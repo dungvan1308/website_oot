@@ -1,0 +1,33 @@
+{% load i18n %}
+<footer class="site-footer">
+  <div class="container-site py-14 sm:py-16">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-start">
+      <div class="max-w-md">
+        <a class="brand-lockup brand-lockup-light" href="{% url 'home' %}" aria-label="{{ site_name }} — {% translate 'home' %}">
+          {% if site_settings.logo %}<img class="brand-image" src="{{ site_settings.logo.url }}" alt="" width="40" height="40">{% elif company_profile.logo %}<img class="brand-image" src="{{ company_profile.logo.url }}" alt="" width="40" height="40">{% else %}<span class="brand-mark" aria-hidden="true">O</span>{% endif %}
+          <span class="brand-copy">
+            <span class="brand-name">{{ site_name }}</span>
+            <span class="brand-descriptor">{{ site_tagline }}</span>
+          </span>
+        </a>
+        <p class="mt-5 max-w-sm text-sm leading-7 text-white/65">{{ company_profile.introduction|default:site_tagline }}</p>
+      </div>
+      <div>
+        <p class="footer-heading">{% translate "Explore" %}</p>
+        <nav class="mt-4 grid grid-cols-2 gap-x-6 gap-y-3" aria-label="{% translate 'Footer navigation' %}">
+          {% for item in nav_items %}
+            <a class="footer-link" href="{{ item.href }}">{% translate item.label %}</a>
+          {% endfor %}
+          <a class="footer-link" href="{% url 'industries' %}">{% translate "Industries" %}</a>
+          <a class="footer-link" href="{% url 'case-studies' %}">{% translate "Case studies" %}</a>
+          <a class="footer-link" href="{% url 'contact' %}">{% translate "Contact" %}</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {% now "Y" %} {{ site_name }}. {% translate "All rights reserved." %}</p>
+      <p>{% translate "Enterprise Technology & Data Transformation" %}</p>
+    </div>
+  </div>
+</footer>
+

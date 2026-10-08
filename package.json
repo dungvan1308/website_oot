@@ -1,0 +1,17 @@
+{
+  "name": "websiteoot-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tailwind CSS build for the WebsiteOOT Django templates",
+  "scripts": {
+    "css:build": "tailwindcss -i ./static/src/css/app.css -o ./static/css/site.css --minify",
+    "css:watch": "tailwindcss -i ./static/src/css/app.css -o ./static/css/site.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  },
+  "overrides": {
+    "@parcel/watcher": "^2.6.0"
+  }
+}

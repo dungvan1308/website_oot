@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Case Studies | Enterprise Transformation Patterns" %}{% endblock %}
+{% block meta_description %}{% translate "Explore illustrative enterprise architecture scenarios across banking data, lakehouse platforms and management BI." %}{% endblock %}
+{% block og_title %}{% translate "Case Studies & Delivery Patterns" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Illustrative challenge-to-impact patterns for enterprise data, banking and BI transformation." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Case studies" eyebrow="Case studies" title="The path from enterprise challenge to lasting capability." description="Explore the challenge, solution, architecture, technology, implementation and potential business impact across representative scenarios." %}
+  <section class="container-site py-12 sm:py-16">
+    <p class="editorial-disclosure"><strong>{% translate "About these examples:" %}</strong> {% translate "Each entry is identified as illustrative or as a confirmed client engagement. Outcomes for illustrative scenarios describe potential impact, not measured project results." %}</p>
+  </section>
+  <section class="container-site grid gap-10 pb-16 sm:pb-24">
+    {% for study in case_studies %}
+      <article class="case-detail" id="{{ study.id }}">
+        <div class="case-detail-heading">
+          <div><p class="eyebrow">{{ study.category }}{% if study.is_illustrative %} · {% translate "Illustrative scenario" %}{% else %} · {% translate "Client engagement" %}{% endif %}</p><h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] text-ocean-950 sm:text-4xl">{{ study.title }}</h2><p class="mt-4 max-w-3xl text-base leading-7 text-muted">{{ study.summary }}</p></div>
+          <span class="case-detail-number">0{{ forloop.counter }}</span>
+        </div>
+        <div class="case-flow-grid mt-8">
+          <section class="case-flow-step"><p class="case-flow-label">01 / {% translate "Challenge" %}</p><p>{{ study.challenge }}</p></section>
+          <section class="case-flow-step"><p class="case-flow-label">02 / {% translate "Solution" %}</p><p>{{ study.solution }}</p></section>
+          <section class="case-flow-step"><p class="case-flow-label">03 / {% translate "Architecture" %}</p><ul>{% for item in study.architecture %}<li>{{ item }}</li>{% endfor %}</ul></section>
+          <section class="case-flow-step"><p class="case-flow-label">04 / {% translate "Technology" %}</p><ul>{% for item in study.technology %}<li>{{ item }}</li>{% endfor %}</ul></section>
+          <section class="case-flow-step"><p class="case-flow-label">05 / {% translate "Implementation" %}</p><ul>{% for item in study.implementation %}<li>{{ item }}</li>{% endfor %}</ul></section>
+          <section class="case-flow-step case-flow-impact"><p class="case-flow-label">06 / {% translate "Potential business impact" %}</p><ul>{% for item in study.impact %}<li>{{ item }}</li>{% endfor %}</ul></section>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+  <section class="container-site pb-16 sm:pb-24">{% include "components/cta.html" with eyebrow="Your challenge" title="Every transformation starts with its own context." description="Talk with our team about the challenge, systems and outcomes behind your initiative." href=site_urls.contact button_label="Discuss your project" %}</section>
+{% endblock %}

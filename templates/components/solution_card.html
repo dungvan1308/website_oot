@@ -1,0 +1,10 @@
+{% load i18n %}
+<article class="solution-card group relative flex h-full flex-col overflow-hidden rounded-panel bg-ocean-900 p-6 text-white sm:p-8">
+  {% if image %}<img class="solution-card-image" src="{{ image }}" alt="{{ image_alt|default:title }}" loading="lazy" width="640" height="400">{% endif %}
+  <span class="solution-index" aria-hidden="true">{{ index|default:"01" }}</span>
+  <h3 class="solution-card-title mt-12 max-w-sm font-display text-2xl font-semibold tracking-tight">{{ title }}</h3>
+  <p class="solution-card-description mt-3 max-w-md text-sm leading-6 text-white/65">{{ description }}</p>
+  {% if capabilities %}<ul class="solution-feature-list mt-5 flex-1">{% for capability in capabilities %}<li>{{ capability }}</li>{% endfor %}</ul>{% endif %}
+  {% if value %}<p class="solution-card-value mt-5 border-t border-white/15 pt-4 text-sm leading-6 text-white/80">{{ value }}</p>{% endif %}
+  {% if href %}<a class="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-aqua-300" href="{{ href }}">{% translate "Explore solution" %} <span aria-hidden="true">→</span></a>{% endif %}
+</article>

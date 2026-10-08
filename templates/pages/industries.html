@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Industries | Enterprise Technology & Data" %}{% endblock %}
+{% block meta_description %}{% translate "Explore technology and data capabilities for banking, financial services, public sector and complex enterprise environments." %}{% endblock %}
+{% block og_title %}{% translate "Industries" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Technology capabilities shaped for sector needs, operating models and complex systems." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Industries" eyebrow="Industries" title="Technology shaped around your industry." description="Every sector has its own systems, regulations and operating realities. We bring relevant data and enterprise capabilities to those specific contexts." %}
+  <section class="container-site py-16 sm:py-24">
+    {% include "components/section_heading.html" with eyebrow="Where we focus" title="Understand the context. Build for what comes next." description="Explore the priorities and solution areas that often matter across these environments." %}
+    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+      {% for industry in industries %}
+        <article class="industry-detail-card" id="{{ industry.slug }}">
+          {% if industry.image %}<img class="industry-detail-image" src="{{ industry.image }}" alt="{{ industry.image_alt|default:industry.title }}" loading="lazy" width="960" height="480">{% endif %}
+          <div class="flex items-start justify-between gap-5"><div><span class="industry-index">{{ industry.index }} / {% translate "INDUSTRY" %}</span><h3 class="mt-3 font-display text-2xl font-semibold tracking-tight text-ocean-950">{{ industry.title }}</h3></div><span class="industry-detail-mark" aria-hidden="true">{% if forloop.first %}⌂{% elif forloop.counter == 2 %}▤{% elif forloop.counter == 3 %}⌘{% else %}◎{% endif %}</span></div>
+          <p class="mt-4 text-sm leading-7 text-muted">{{ industry.description }}</p>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2">
+            <div><p class="industry-list-label">{% translate "Focus areas" %}</p><ul class="industry-chip-list">{% for item in industry.focus %}<li>{{ item }}</li>{% endfor %}</ul></div>
+            <div><p class="industry-list-label">{% translate "Related solutions" %}</p><ul class="industry-related-list">{% for item in industry.solutions %}<li>{{ item }}</li>{% endfor %}</ul></div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="bg-ocean-950 py-16 text-white sm:py-20">
+    <div class="container-site grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+      <div><p class="eyebrow text-aqua-300">{% translate "Technology ecosystem" %}</p><h2 class="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">{% translate "Technologies we work with." %}</h2><p class="mt-4 text-sm leading-7 text-white/65">{% translate "Platform selection depends on your architecture, constraints and goals. These are technologies across our ecosystem—not claims of official partnership." %}</p></div>
+      <ul class="technology-list" aria-label="{% translate 'Technologies' %}">{% for technology in technologies %}<li>{{ technology }}</li>{% endfor %}</ul>
+    </div>
+  </section>
+  <section class="container-site py-16 sm:py-24">{% include "components/cta.html" with eyebrow="Your industry context" title="Talk through the realities of your environment." description="Share your operating context and priorities; we can explore relevant architecture and delivery options." href=site_urls.contact button_label="Start a conversation" %}</section>
+{% endblock %}

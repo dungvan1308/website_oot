@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Enterprise Data, Banking & Cloud Solutions" %}{% endblock %}
+{% block meta_description %}{% translate "Explore enterprise data, lakehouse, BI, management, banking reporting, core banking migration and cloud transformation solutions." %}{% endblock %}
+{% block og_title %}{% translate "Enterprise Solutions" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Practical data, enterprise management, banking and cloud solutions shaped around your operating needs." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Solutions" eyebrow="Solutions" title="Practical architectures for complex business needs." description="Connect strategy, data and technology through solution patterns designed to fit your organization and evolve with it." %}
+  <section class="container-site py-16 sm:py-24">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      {% include "components/section_heading.html" with eyebrow="Solution portfolio" title="A clear path from challenge to capability." description="Explore solution areas spanning data platforms, enterprise applications, banking technology and cloud." %}
+      <a class="card-link shrink-0" href="{{ site_urls.services }}">{% translate "Explore services" %} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="mt-10 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {% for solution in solutions %}
+        <div id="{{ solution.slug }}" class="scroll-mt-8 h-full">
+          {% include "components/solution_card.html" with title=solution.title description=solution.description index=solution.index capabilities=solution.capabilities value=solution.value href=site_urls.contact image=solution.image image_alt=solution.image_alt %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="bg-ice-100 py-16 sm:py-20">
+    <div class="container-site grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div>{% include "components/section_heading.html" with eyebrow="Designed to fit" title="Start with the architecture your organization needs." description="Our solution patterns provide a foundation. Scope, platform choices and delivery sequencing are shaped with your teams and existing environment." %}</div>
+      <div class="solution-principles"><p><span>01</span> {% translate "Fit your current landscape" %}</p><p><span>02</span> {% translate "Keep data and governance connected" %}</p><p><span>03</span> {% translate "Plan for adoption and change" %}</p></div>
+    </div>
+  </section>
+  <section class="container-site py-16 sm:py-24">{% include "components/cta.html" with eyebrow="Find your starting point" title="Let's shape a solution around your priorities." description="Share the challenge you are solving and we can explore the right path together." href=site_urls.contact button_label="Discuss a solution" %}</section>
+{% endblock %}

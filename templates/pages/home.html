@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Enterprise Technology & Data Transformation" %}{% endblock %}
+{% block meta_description %}{% translate "We help enterprises shape trusted data platforms and technology foundations for lasting transformation." %}{% endblock %}
+{% block og_title %}{% translate "Enterprise Technology & Data Transformation" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "We help enterprises shape trusted data platforms and technology foundations for lasting transformation." %}{% endblock %}
+
+{% block content %}
+  {% include "components/hero.html" with eyebrow=site_settings.hero_eyebrow title=site_settings.hero_title description=site_settings.hero_description primary_href=site_settings.hero_primary_url primary_label=site_settings.hero_primary_label secondary_href=site_settings.hero_secondary_url secondary_label=site_settings.hero_secondary_label visual_alt="A digital network connecting enterprise data systems" %}
+
+  <section class="capability-ribbon" aria-label="{% translate 'Core capability areas' %}">
+    <div class="container-site flex flex-wrap items-center justify-center gap-x-7 gap-y-3 py-5 sm:justify-between sm:py-6">
+      <span>{% translate "Data platforms" %}</span><span>{% translate "Business intelligence" %}</span><span>{% translate "Enterprise applications" %}</span><span>{% translate "Banking technology" %}</span><span>{% translate "Cloud transformation" %}</span>
+    </div>
+  </section>
+
+  <section class="container-site grid gap-12 py-20 sm:py-28 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
+    <div>
+      <p class="eyebrow">{% translate "Technology with intent" %}</p>
+      <h2 class="section-heading mt-4">{{ company_profile.homepage_intro_heading }}</h2>
+      <p class="mt-5 text-base leading-7 text-muted sm:text-lg sm:leading-8">{{ company_profile.introduction }}</p>
+      <a class="card-link mt-7" href="{{ site_urls.about }}">{% translate "Get to know us" %} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="intro-visual" role="img" aria-label="{% translate 'Connected data layers supporting enterprise decisions' %}">
+      <div class="intro-orbit intro-orbit-one"></div><div class="intro-orbit intro-orbit-two"></div>
+      <div class="intro-core"><span class="intro-core-dot"></span><span>{% translate "Enterprise" %}<br>{% translate "data core" %}</span></div>
+      <div class="intro-node intro-node-top"><span class="intro-node-dot"></span>{% translate "Systems" %}</div>
+      <div class="intro-node intro-node-right"><span class="intro-node-dot"></span>{% translate "Insights" %}</div>
+      <div class="intro-node intro-node-bottom"><span class="intro-node-dot"></span>{% translate "Operations" %}</div>
+      <div class="intro-node intro-node-left"><span class="intro-node-dot"></span>{% translate "Cloud" %}</div>
+      <svg class="intro-connectors" viewBox="0 0 600 420" aria-hidden="true"><path d="M300 210 300 62M300 210 500 210M300 210 300 358M300 210 100 210"/></svg>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28" id="capabilities">
+    <div class="container-site">
+      {% include "components/section_heading.html" with eyebrow="What we do" title="The capabilities to move from complexity to clarity." description="Deep expertise across data, enterprise software and cloud—connected around your business priorities." %}
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {% for service in services %}{% include "components/service_card.html" with title=service.title description=service.description mark=service.mark href=service.href %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ice-50 py-20 sm:py-28" id="solutions">
+    <div class="container-site">
+      <div class="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+        {% include "components/section_heading.html" with eyebrow="Solutions" title="Designed around the systems your business depends on." description="Practical architectures for modern data, management and banking needs." %}
+        <a class="card-link shrink-0" href="{{ site_urls.solutions }}">{% translate "View all solutions" %} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {% for solution in solutions %}{% include "components/solution_card.html" with title=solution.title description=solution.description index=solution.index href=solution.href image=solution.image image_alt=solution.image_alt %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28" id="products">
+    <div class="container-site">
+      <div class="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+        {% include "components/section_heading.html" with eyebrow="Products & platforms" title="Technology foundations, ready to fit your enterprise." description="A portfolio of platforms and solutions built to support connected operations and trusted insight." %}
+        <a class="card-link shrink-0" href="{{ site_urls.products }}">{% translate "Explore products" %} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {% for product in products %}{% include "components/product_card.html" with title=product.title description=product.description technology=product.technology mark=product.mark href=product.href image=product.image image_alt=product.image_alt %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-band py-20 sm:py-28" id="industries">
+    <div class="container-site grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-20">
+      <div>
+        {% include "components/section_heading.html" with eyebrow="Industries" title="Built for complex, connected environments." description="We work across sectors where dependable data and enterprise systems make a meaningful difference." %}
+        <a class="card-link mt-7" href="{{ site_urls.industries }}">{% translate "Explore industries" %} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2">
+        {% for industry in industries %}
+          <article class="industry-card">
+            <span class="industry-index">{{ industry.index }}</span>
+            <h3 class="mt-8 font-display text-lg font-semibold tracking-tight text-ocean-950">{{ industry.title }}</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">{{ industry.description }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="ecosystem-section bg-ocean-950 py-16 text-white sm:py-20" id="technology-ecosystem">
+    <div class="container-site">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16">
+        <div>
+          <p class="eyebrow text-aqua-300">{% translate "Technology ecosystem" %}</p>
+          <h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">{% translate "Technologies we work with." %}</h2>
+          <p class="mt-4 max-w-lg text-sm leading-7 text-white/65">{% translate "We select the right tools for your architecture, existing systems and long-term goals." %}</p>
+        </div>
+        <ul class="technology-list" aria-label="{% translate 'Technologies' %}">
+          {% for technology in technologies %}<li>{{ technology }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ice-50 py-20 sm:py-28" id="case-studies">
+    <div class="container-site">
+      <div class="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+        {% include "components/section_heading.html" with eyebrow="Case studies" title="Enterprise challenges, solved step by step." description="Explore representative delivery patterns across data platforms, banking technology and business reporting." %}
+        <a class="card-link shrink-0" href="{{ site_urls.case_studies }}">{% translate "View case studies" %} <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="mt-5 text-xs leading-5 text-muted">{% translate "Each entry identifies whether it is an illustrative scenario or a confirmed client engagement. Outcomes for illustrative scenarios are potential, not measured." %}</p>
+      <div class="mt-8 grid gap-5 lg:grid-cols-3">
+        {% for story in delivery_patterns %}{% include "components/case_study_card.html" with industry=story.category title=story.title summary=story.summary impact=story.impact href=story.href image=story.image image_alt=story.image_alt is_illustrative=story.is_illustrative %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band bg-ocean-900 py-14 sm:py-16" aria-label="{% translate 'Capability overview' %}">
+    <div class="container-site grid gap-8 sm:grid-cols-3 sm:gap-5">
+      {% for statistic in capability_stats %}{% include "components/statistic.html" with value=statistic.value label=statistic.label %}{% endfor %}
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28" id="insights">
+    <div class="container-site">
+      <div class="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+        {% include "components/section_heading.html" with eyebrow="Insights" title="Ideas for your next transformation decision." description="Perspectives on data platforms, enterprise systems and the work of making change stick." %}
+        <a class="card-link shrink-0" href="{{ site_urls.insights }}">{% translate "Visit insights" %} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {% for article in insights %}{% include "components/article_card.html" with category=article.category title=article.title summary=article.summary href=article.href %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-site pb-20 sm:pb-28" id="contact">
+    {% include "components/cta.html" with eyebrow="Start a conversation" title="Ready to move your enterprise forward?" description="Let’s talk about your data, systems and the outcomes you need to deliver." href=site_urls.contact button_label="Talk to our experts" %}
+  </section>
+{% endblock %}

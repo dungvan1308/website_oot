@@ -1,0 +1,29 @@
+<section class="hero-shell relative isolate overflow-hidden bg-ocean-950 text-white">
+  <div class="hero-grid absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="container-site grid min-h-[36rem] items-center gap-12 py-16 sm:py-24 lg:min-h-[44rem] lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
+    <div class="max-w-3xl">
+      {% if eyebrow %}<p class="eyebrow text-aqua-300">{{ eyebrow }}</p>{% endif %}
+      <h1 class="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{{ title }}</h1>
+      {% if description %}<p class="mt-6 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{{ description }}</p>{% endif %}
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        {% if primary_label %}{% include "components/button.html" with href=primary_href label=primary_label variant="primary" arrow=True extra_class="hero-button-primary" %}{% endif %}
+        {% if secondary_label %}{% include "components/button.html" with href=secondary_href label=secondary_label variant="secondary" extra_class="hero-button-secondary" %}{% endif %}
+      </div>
+    </div>
+    <div class="hero-visual" role="img" aria-label="{{ visual_alt|default:'Abstract digital network visual' }}">
+      <svg viewBox="0 0 560 520" fill="none" aria-hidden="true">
+        <circle cx="280" cy="260" r="205" stroke="white" stroke-opacity=".12"/>
+        <circle cx="280" cy="260" r="150" stroke="#78E5DF" stroke-opacity=".28"/>
+        <circle cx="280" cy="260" r="92" stroke="white" stroke-opacity=".16"/>
+        <path d="M60 344c87-112 138-98 216-16s128 92 224-89" stroke="#43D3D1" stroke-width="2" stroke-linecap="round"/>
+        <path d="M72 174c91 61 150 22 206-38s140-38 222 26" stroke="white" stroke-opacity=".48" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="276" cy="260" r="35" fill="#43D3D1" fill-opacity=".16" stroke="#78E5DF" stroke-width="2"/>
+        <circle cx="276" cy="260" r="8" fill="#78E5DF"/>
+        <circle cx="499" cy="239" r="6" fill="#78E5DF"/><circle cx="180" cy="306" r="5" fill="#43D3D1"/>
+        <circle cx="278" cy="136" r="5" fill="white"/><circle cx="124" cy="179" r="4" fill="#43D3D1"/>
+        <path d="m276 260 104-117m-104 117 112 74M276 260 166 115m110 145-127 77m127-77 117-7" stroke="white" stroke-opacity=".18" stroke-dasharray="3 7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+

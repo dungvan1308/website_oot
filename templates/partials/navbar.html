@@ -1,0 +1,35 @@
+{% load i18n %}
+<header class="site-header" data-site-header>
+  <div class="container-site flex min-h-[4.75rem] items-center justify-between gap-6">
+    <a class="brand-lockup" href="{% url 'home' %}" aria-label="{{ site_name }} — {% translate 'home' %}">
+      {% if site_settings.logo %}<img class="brand-image" src="{{ site_settings.logo.url }}" alt="" width="40" height="40">{% elif company_profile.logo %}<img class="brand-image" src="{{ company_profile.logo.url }}" alt="" width="40" height="40">{% else %}<span class="brand-mark" aria-hidden="true">O</span>{% endif %}
+      <span class="brand-copy">
+        <span class="brand-name">{{ site_name }}</span>
+        <span class="brand-descriptor">{{ site_tagline }}</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-4 lg:flex xl:gap-6" aria-label="{% translate 'Primary navigation' %}">
+      {% include "partials/navigation_links.html" with nav_variant="desktop" %}
+      {% include "partials/language_switcher.html" %}
+    </nav>
+
+    <div class="hidden lg:block">
+      {% include "components/button.html" with href="contact" label="Talk to our experts" variant="primary" route_name=True %}
+    </div>
+
+    <button class="menu-toggle lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="{% translate 'Open navigation menu' %}" data-menu-toggle data-open-label="{% translate 'Open navigation menu' %}" data-close-label="{% translate 'Close navigation menu' %}">
+      <svg class="menu-icon-open" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <svg class="menu-icon-close" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="mobile-navigation lg:hidden" id="mobile-navigation" data-mobile-navigation hidden>
+    <nav class="container-site flex flex-col gap-1 py-4" aria-label="{% translate 'Mobile navigation' %}">
+      {% include "partials/navigation_links.html" with nav_variant="mobile" %}
+      {% include "partials/language_switcher.html" %}
+      <a class="button-primary mt-3 w-full" href="{% url 'contact' %}">{% translate "Talk to our experts" %} <span aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+

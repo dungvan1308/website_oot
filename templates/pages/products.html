@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Enterprise Data, BI & Business Products" %}{% endblock %}
+{% block meta_description %}{% translate "Discover data warehouse, lakehouse, BI reporting, ERP, HR, CRM, banking data and SBV reporting products." %}{% endblock %}
+{% block og_title %}{% translate "Products & Platforms" %} | {{ site_name }}{% endblock %}
+{% block og_description %}{% translate "Explore enterprise platforms and solutions for data, reporting, business applications and banking technology." %}{% endblock %}
+{% block content %}
+  {% include "components/page_hero.html" with breadcrumb_label="Products" eyebrow="Products & platforms" title="Purpose-built foundations for enterprise work." description="Explore platforms and business solutions that help connect operations, data and insight across your organization." %}
+  <section class="container-site py-16 sm:py-24">
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      {% include "components/section_heading.html" with eyebrow="Portfolio" title="Tools for connected data and operations." description="Each product area brings a focused set of capabilities, technology choices and business value." %}
+      <a class="card-link shrink-0" href="{{ site_urls.solutions }}">{% translate "See related solutions" %} <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {% for product in products %}
+        <div id="{{ product.slug }}" class="scroll-mt-8">
+          {% include "components/product_card.html" with title=product.title description=product.description technology=product.technology mark=product.mark features=product.features value=product.value href=site_urls.contact image=product.image image_alt=product.image_alt %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="bg-white py-16 sm:py-20">
+    <div class="container-site grid gap-8 md:grid-cols-3">
+      <div><p class="eyebrow">{% translate "How products fit" %}</p><h2 class="mt-4 font-display text-2xl font-semibold tracking-tight text-ocean-950">{% translate "A product is a starting point." %}</h2></div>
+      <p class="text-sm leading-7 text-muted">{% translate "We assess your environment, requirements and existing platforms before recommending a fit. Technology choices are made for the use case—not for a logo wall." %}</p>
+      <p class="text-sm leading-7 text-muted">{% translate "Implementation can include configuration, integration, data migration, reporting, governance and support planning as needed." %}</p>
+    </div>
+  </section>
+  <section class="container-site py-16 sm:py-24">{% include "components/cta.html" with eyebrow="Explore a product" title="See how a platform can fit your environment." description="Talk to us about requirements, architecture and a practical implementation path." href=site_urls.contact button_label="Talk to our experts" %}</section>
+{% endblock %}
