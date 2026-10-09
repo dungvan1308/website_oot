@@ -1,0 +1,1010 @@
+# Hướng dẫn Deploy HRPSolution lên Ubuntu (chuẩn hóa)
+
+> **Stack:** Django 5.2 + Gunicorn + Nginx + PostgreSQL 16 + systemd
+> **OS:** Ubuntu 22.04 LTS trở lên
+> **Cấu trúc:** Toàn bộ source code nằm trực tiếp tại `/opt/hrpsolution/` (không lồng thư mục con)
+
+---
+
+## Mục lục
+
+1. Cài đặt gói hệ thống + Firewall
+2. Cài Python 3.12 (nếu cần)
+3. PostgreSQL — tạo database và user
+4. Tạo user hệ thống & thư mục ứng dụng
+5. Lấy source code (clone không lồng)
+6. Python virtual environment
+7. Cấu hình biến môi trường (.env)
+8. Build frontend (Tailwind CSS)
+9. Migrate + collectstatic
+10. Gunicorn systemd service
+11. Nginx
+12. SSL với Let's Encrypt
+13. Kiểm tra & xác nhận
+14. Tạo superuser
+15. Cập nhật ứng dụng (deploy lại)
+16. Xử lý sự cố
+17. Backup PostgreSQL
+18. Logrotate
+19. Tối ưu PostgreSQL
+
+---
+
+## 1. Cài đặt gói hệ thống + Firewall
+
+```bash
+sudo apt-get update && sudo apt-get upgrade -y
+
+sudo apt-get install -y \
+    build-essential python3-pip python3-venv python3-dev libpq-dev \
+    postgresql postgresql-contrib nginx git curl software-properties-common ufw
+```
+
+```bash
+# QUAN TRỌNG: allow SSH trước khi enable ufw, tránh mất kết nối
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+sudo ufw status verbose
+```
+
+---
+
+## 2. Cài Python 3.12 (chỉ với Ubuntu 22.04)
+
+```bash
+python3 --version
+```
+
+Nếu đã là `Python 3.12.x` → bỏ qua, sang bước 3.
+
+Nếu là Ubuntu 22.04 (Python 3.10):
+
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt-get update
+sudo apt-get install -y python3.12 python3.12-venv python3.12-dev
+python3.12 --version
+```
+
+---
+
+## 3. PostgreSQL — tạo database và user
+
+```bash
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo systemctl status postgresql
+```
+
+
+- https://vnc.hosgroup.net/
+
+
+
+/p: dungvan1308@gmail.com/hg@202605
+
+
+ pw: hg@2050!#$M@
+
+
+Web: https://qlcv.hosgroup.net/
+
+admin/dungnv@123
+
+IP Server: 160.191.85.13
+
+
+
+```bash
+sudo -u postgres psql
+```
+
+```sql
+CREATE USER oot_user WITH PASSWORD 'oot_user';
+
+CREATE USER hrp_user WITH PASSWORD 'hrp@123';
+-- nếu tồn tại thì ALTER USER hrp_user WITH PASSWORD 'hrp@123';
+
+
+
+
+CREATE DATABASE oot_db OWNER oot_user;
+GRANT ALL PRIVILEGES ON DATABASE oot_db TO oot_user;
+\q
+```
+
+
+```bash
+psql -h localhost -U oot_user -d oot_db -c "SELECT version();"
+```
+
+---
+
+## 4. Tạo user hệ thống & thư mục ứng dụng
+
+```bash
+sudo useradd --system --no-create-home --shell /usr/sbin/nologin website_oot
+
+sudo mkdir -p /opt/website_oot/logs
+sudo mkdir -p /opt/website_oot/media
+sudo mkdir -p /opt/website_oot/staticfiles
+
+# Tạm cấp quyền cho user hiện tại để setup
+sudo chown -R $USER:$USER /opt/website_oot
+```
+
+---
+
+## 5. Lấy source code (clone không lồng thư mục)
+
+### 5.1 SSH key cho GitHub (nếu repo private)
+
+```bash
+ssh-keygen -t ed25519 -C "deploy@hrpsolution" -f ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+```
+
+ gia tri: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOJeL8B2FexFc9XQKIY8164jWYf/Do8zgUhmQ1+QjL+e deploy@hrpsolution
+ 
+ 
+
+Thêm public key vào GitHub: **Settings → SSH and GPG keys → New SSH key**
+
+```bash
+ssh -T git@github.com
+```
+
+### 5.2 Clone — dùng dấu `.` để không tạo thư mục con
+
+```bash
+cd /opt/website_oot
+git clone https://github.com/dungvan1308/market_management_system.git .
+# hoặc qua HTTPS:
+# git clone https://github.com/<USERNAME>/hrpsolution.git .
+
+git@github.com:dungvan1308/hrpsolution.git
+
+-- Bi Long, xoa di git clone lại ( chú có dấu . phía sau cùng )
+cd /opt/website_oot
+rm -rf hrpsolution
+git clone git@github.com:dungvan1308/hrpsolution.git .
+
+```
+
+-- 3 thu mục nay có sẵn trên repo rồi nên xóa luôn, ko tạo sẵn ở trên 
+cd /opt/website_oot
+rm -rf market logs media staticfiles
+
+-- 
+
+
+
+### 5.3 Xác nhận cấu trúc đúng
+
+```bash
+ls /opt/hrpsolution/backend/manage.py
+ls /opt/hrpsolution/frontend/
+ls /opt/hrpsolution/.env.production.example
+ls /opt/hrpsolution/requirements.txt
+```
+
+Cả 4 lệnh trên phải trả về kết quả hợp lệ (không lỗi "No such file"). Nếu lỗi, có thể bạn đang bị lồng thư mục — sửa bằng:
+
+-- Check vụ lồng folder
+/opt thuộc root, user usrhg không có quyền tạo thư mục ở đó. Xử lý:
+bashsudo mkdir -p /opt/hrpsolution
+sudo chown -R usrhg:usrhg /opt/hrpsolution
+
+cd /opt
+git clone git@github.com:dungvan1308/hrpsolution.git hrpsolution
+
+-- End Chekc 
+
+
+-- Xử lý lồng, nếu ko clone lại từ thư mục cha 
+```bash
+cd /opt/hrpsolution
+mv hrpsolution/* hrpsolution/.[!.]* . 2>/dev/null
+rmdir hrpsolution
+```
+
+---
+
+## 6. Python virtual environment
+
+```bash
+cd /opt/website_oot
+python3.12 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install gunicorn==23.0.0
+
+python -m django --version    # 5.2.x
+deactivate
+```
+
+---
+
+## 7. Cấu hình biến môi trường (.env)
+
+```bash
+cd /opt/website_oot
+
+nano .env
+nano .env
+
+
+
+```
+sudo nano /opt/website_oot/.env
+
+
+DJANGO_SECRET_KEY=&hhy1q^hs&am_4xy1aj9kkb@_^q8^v)*!&rq$(^sg%dudu)02y
+
+
+
+
+
+Sau khi sửa .env, thực hiện tiếp:
+
+sudo systemctl restart website_oot
+
+Kiểm tra service:
+
+sudo systemctl status hrpsolution --no-pager
+
+Phải thấy:
+
+active (running)
+
+sudo su - hrp
+
+
+
+sudo su - hrp
+
+cd /opt/market
+
+git pull origin main/postgresql
+
+
+-- Drop DB và Tạo lại 
+
+sudo -u postgres psql
+
+DROP DATABASE IF EXISTS market_management;
+
+CREATE DATABASE market_management
+WITH OWNER = market_management_user
+ENCODING = 'UTF8';
+
+python manage.py migrate
+python manage.py collectstatic --noinput
+sudo systemctl restart irdm
+
+
+
+
+restore db:
+psql \
+-h localhost \
+-U market_management_user\
+-d market_management \
+-f /opt/market/market_management_system/DataBase/market_management_20261007_pc.sql
+
+
+Restore DB 
+
+
+PGPASSWORD=market_management_user psql \
+-h localhost \
+-U market_management_user \
+-d market_management \
+-f /opt/market/market_management_system/DataBase/market_management_20261007_pc.sql
+
+
+
+
+ cd /opt/market
+source venv/bin/activate
+
+cd market_management_system/
+cd backend
+
+python manage.py collectstatic --noinput
+
+sudo systemctl restart market
+
+
+
+
+
+
+D:\07.Dungnv\0.SourceCode\03.MarketManagementSystem\market_management_system\DataBase\market_management_20260829_v1.sql
+
+
+
+
+Nội dung `.env`:
+
+```dotenv
+DEBUG=False
+
+SECRET_KEY=<DAN_KEY_VAO_DAY>
+
+ALLOWED_HOSTS=hrp.benhvien.vn,www.hrp.benhvien.vn,YOUR_SERVER_IP
+
+DB_NAME=hrpsolution
+DB_USER=hrp_user
+DB_PASSWORD=hrp@123
+DB_HOST=localhost
+DB_PORT=5432
+
+LOG_LEVEL=INFO
+```
+
+**Generate SECRET_KEY:**
+
+```bash
+(venv) usrhg@otsrv:/opt/hrpsolution$ python3 -c "import secrets; print(secrets.token_urlsafe(50))"
+
+Ket qua 
+
+MFCoEoWMKCS9FQuRTaE7mK-QxJCUlvaxaY3L8eh4c0PKBl8AUwp5QZMyGxtTcZQrtVg
+(venv) usrhg@otsrv:/opt/hrpsolution$ 
+"
+```
+
+python3 -c "import secrets, string; chars = string.ascii_letters + string.digits + '!@#%^&*(-_=+)'; print(''.join(secrets.choice(chars) for _ in range(50)))"
+
+
+--
+
+dotenv
+DEBUG=False
+
+SECRET_KEY=MFCoEoWMKCS9FQuRTaE7mK-QxJCUlvaxaY3L8eh4c0PKBl8AUwp5QZMyGxtTcZQrtVg
+
+ALLOWED_HOSTS=ALLOWED_HOSTS=10.65.2.25,localhost,127.0.0.1
+
+DB_NAME=hrpsolution
+DB_USER=hrp_user
+DB_PASSWORD=hrp@123
+DB_HOST=localhost
+DB_PORT=5432
+
+LOG_LEVEL=INFO
+
+-- 
+
+
+
+
+
+
+
+```bash
+chmod 600 /opt/hrpsolution/.env
+```
+
+---
+
+## 8. Build frontend (Tailwind CSS)
+
+```bash
+# Kiểm tra file CSS đã commit sẵn chưa
+ls -lh /opt/hrpsolution/frontend/static/css/output.css
+ls -lh /opt/hrpsolution/frontend/static/vendor/
+```
+
+Nếu có đủ file → bỏ qua, sang bước 9.
+
+Nếu thiếu hoặc cần rebuild:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node --version && npm --version
+
+cd /opt/hrpsolution
+npm ci
+node scripts/copy-vendors.js
+npm run build
+
+ls -lh frontend/static/css/output.css
+```
+
+---
+
+## 9. Migrate + collectstatic
+
+```bash
+cd /opt/hrpsolution/backend
+source /opt/hrpsolution/venv/bin/activate
+
+python manage.py check --deploy
+python manage.py showmigrations
+python manage.py migrate
+python manage.py collectstatic --noinput --clear
+
+deactivate
+```
+
+```bash
+# Cấp quyền chính thức cho user hrp
+sudo chown -R hrp:hrp /opt/hrpsolution
+sudo chmod -R 755 /opt/hrpsolution/staticfiles
+sudo chmod -R 755 /opt/hrpsolution/media
+sudo chmod -R 775 /opt/hrpsolution/logs
+```
+
+---
+
+## 10. Gunicorn systemd service
+
+Kiểm tra CPU và chọn số workers theo `(CPU x 2) + 1`:
+
+```bash
+nproc
+```
+
+| CPU cores | Workers khuyến nghị |
+|-----------|---------------------|
+| 2 | 5 |
+| 4 | 9 |
+| 8 | 17 |
+
+```bash
+sudo nano /etc/systemd/system/hrpsolution.service
+```
+
+```ini
+[Unit]
+Description=HRPSolution Gunicorn Application Server
+Documentation=https://docs.djangoproject.com
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=notify
+User=hrp
+Group=hrp
+WorkingDirectory=/opt/hrpsolution/backend
+EnvironmentFile=/opt/hrpsolution/.env
+ExecStart=/opt/hrpsolution/venv/bin/gunicorn config.wsgi:application \
+    --bind unix:/opt/hrpsolution/hrpsolution.sock \
+    --workers 5 \
+    --threads 2 \
+    --worker-class sync \
+    --timeout 120 \
+    --access-logfile /opt/hrpsolution/logs/gunicorn_access.log \
+    --error-logfile /opt/hrpsolution/logs/gunicorn_error.log \
+    --log-level info \
+    --pid /opt/hrpsolution/hrpsolution.pid
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable hrpsolution
+sudo systemctl start hrpsolution
+sudo systemctl status hrpsolution
+ls -la /opt/hrpsolution/hrpsolution.sock
+```
+
+---
+
+## 11. Nginx
+
+### 11.1 Cài (nếu chưa có)
+
+```bash
+which nginx || sudo apt install nginx -y
+nginx -v
+sudo systemctl enable nginx
+```
+
+### 11.2 Site config — production (có domain)
+
+```bash
+sudo nano /etc/nginx/sites-available/hrpsolution
+```
+
+```nginx
+server {
+    listen 80;
+    server_name YOUR_DOMAIN www.YOUR_DOMAIN;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location /static/ {
+        alias /opt/hrpsolution/staticfiles/;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+
+    location /media/ {
+        alias /opt/hrpsolution/media/;
+        expires 7d;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/opt/hrpsolution/hrpsolution.sock;
+        proxy_connect_timeout 60s;
+        proxy_send_timeout    120s;
+        proxy_read_timeout    120s;
+        client_max_body_size  50M;
+    }
+}
+```
+
+ -- Chưa có Domain 
+ server {
+    listen 80;
+    server_name _;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location /static/ {
+        alias /opt/hrpsolution/staticfiles/;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+
+    location /media/ {
+        alias /opt/hrpsolution/media/;
+        expires 7d;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/opt/hrpsolution/hrpsolution.sock;
+        proxy_connect_timeout 60s;
+        proxy_send_timeout    120s;
+        proxy_read_timeout    120s;
+        client_max_body_size  50M;
+    }
+}
+ -- End Chưa có domain 
+ 
+ sudo nano /etc/nginx/sites-available/irdm
+ cd /opt/irdm
+ 
+ sudo nano .env
+
+
+restore db:
+psql \
+-h localhost \
+-U irdm_user \
+-d irdm \
+-f /opt/irdm/website_irdm/DataBase/irdm_db_20260913_pc.sql
+
+
+
+PGPASSWORD=irdm_user psql \
+-h localhost \
+-U irdm_user \
+-d irdm \
+-f /opt/irdm/website_irdm/DataBase/irdm_db_20260923_pc.sql
+
+
+--Backup Db 
+
+PGPASSWORD=irdm_user pg_dump \
+-h localhost \
+-U irdm_user \
+-d irdm \
+-f /opt/irdm/website_irdm/database_server/irdm_db_$(date +%Y%m%d_%H%M%S).sql
+
+
+
+
+
+--Backup dump ( file backup ) 
+
+
+PGPASSWORD='irdm_user' pg_dump \
+    -h localhost \
+    -p 5432 \
+    -U irdm_user \
+    -d irdm \
+    --format=custom \
+    --no-owner \
+    --no-acl \
+    -f "/opt/irdm/website_irdm/database_server/irdm_db_$(date +%Y%m%d_%H%M%S).backup"
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+-- Drop DB và Tạo lại 
+
+sudo -u postgres psql
+
+DROP DATABASE IF EXISTS irdm;
+
+CREATE DATABASE irdm
+WITH OWNER = irdm_user
+ENCODING = 'UTF8';
+
+python manage.py migrate
+python manage.py collectstatic --noinput
+sudo systemctl restart irdm
+
+
+ cd /opt/irdm
+source venv/bin/activate
+
+python manage.py collectstatic --noinput
+
+sudo systemctl restart irdm
+
+--mail 
+supportirdm@gmail.com/irdm@gmail$1308
+
+
+
+
+
+sudo systemctl restart irdm
+
+ sudo nano /etc/nginx/sites-available/irdm
+
+```bash
+sudo ln -sf /etc/nginx/sites-available/irdm /etc/nginx/sites-enabled/irdm
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+
+
+> **Test tạm (chưa có domain):** đổi dòng `listen 80;` thành `listen 80 default_server;` và `server_name YOUR_DOMAIN www.YOUR_DOMAIN;` thành `server_name _;`. Chỉ dùng MỘT trong hai dạng, không để song song trong cùng file.
+
+### 11.3 Kích hoạt
+
+```bash
+sudo ln -sf /etc/nginx/sites-available/hrpsolution /etc/nginx/sites-enabled/hrpsolution
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+---
+
+## 12. SSL với Let's Encrypt
+
+> Yêu cầu: domain đã trỏ A record về IP server, port 80 đang mở.
+
+```bash
+sudo apt-get install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d YOUR_DOMAIN -d www.YOUR_DOMAIN
+# Nhập email, chọn "2" để redirect HTTP -> HTTPS
+
+sudo certbot renew --dry-run
+```
+
+---
+
+## 13. Kiểm tra & xác nhận
+
+```bash
+sudo systemctl status hrpsolution
+sudo systemctl status nginx
+sudo systemctl status postgresql
+
+tail -50 /opt/hrpsolution/logs/gunicorn_access.log
+tail -50 /opt/hrpsolution/logs/gunicorn_error.log
+sudo tail -50 /var/log/nginx/access.log
+sudo tail -50 /var/log/nginx/error.log
+
+curl -o /dev/null -s -w "HTTP Status: %{http_code}\n" \
+    -H "Host: YOUR_DOMAIN" http://127.0.0.1/login/
+```
+
+
+curl --unix-socket /opt/hrpsolution/hrpsolution.sock http://localhost/
+
+http://10.65.2.25/
+
+
+curl --unix-socket /opt/hrpsolution/hrpsolution.sock http://10.65.2.25/
+
+
+Truy cập trình duyệt:
+- `http://YOUR_DOMAIN` → redirect `https://` (sau khi cài SSL)
+- `https://YOUR_DOMAIN/login/` → trang đăng nhập HRPSolution
+
+---
+
+## 14. Tạo superuser Django Admin
+
+```bash
+cd /opt/hrpsolution/backend
+source /opt/hrpsolution/venv/bin/activate
+python manage.py createsuperuser
+deactivate
+```
+
+Truy cập Admin: `https://YOUR_DOMAIN/admin/`
+
+---
+
+## 15. Cập nhật ứng dụng (quy trình deploy lại)
+
+```bash
+cd /opt/hrpsolution
+git pull
+
+source venv/bin/activate
+pip install -r requirements.txt -q
+npm run build          # nếu có thay đổi CSS/JS
+
+cd backend
+python manage.py migrate --noinput
+python manage.py collectstatic --noinput --clear
+cd ..
+deactivate
+
+sudo chown -R hrp:hrp /opt/hrpsolution
+sudo systemctl reload hrpsolution    # zero-downtime
+```
+
+### Bảng tham chiếu theo loại thay đổi
+
+| Loại thay đổi | git pull | pip install | migrate | collectstatic | reload |
+|----------------|-----------|--------------|-----------|-----------------|----------|
+| Sửa file `.py` | ✅ | ❌ | ❌ | ❌ | ✅ |
+| Thêm migration mới | ✅ | ❌ | ✅ | ❌ | ✅ |
+| Thêm thư viện mới | ✅ | ✅ | ❌ | ❌ | ✅ |
+| Sửa template HTML | ✅ | ❌ | ❌ | ❌ | ✅ |
+| Sửa CSS/Tailwind¹ | ✅ | ❌ | ❌ | ✅ | ✅ |
+| Thay đổi `.env` | ❌ | ❌ | ❌ | ❌ | restart² |
+
+¹ Build CSS trên máy dev (`npm run build`), commit `output.css`.
+² Dùng `systemctl restart hrpsolution` thay vì `reload` khi đổi biến môi trường.
+
+---
+
+## 16. Xử lý sự cố thường gặp
+
+### Gunicorn không start
+
+```bash
+sudo journalctl -u hrpsolution -n 50 --no-pager
+```
+
+Kiểm tra: `SECRET_KEY` trong `.env`, `python manage.py check`, PostgreSQL đang chạy (`sudo systemctl start postgresql`).
+
+### Lỗi 502 Bad Gateway
+
+```bash
+ls -la /opt/hrpsolution/hrpsolution.sock
+sudo systemctl status hrpsolution
+sudo nginx -T | grep sock
+```
+
+### Static files 404 (CSS/JS không load)
+
+```bash
+grep -n "alias" /etc/nginx/sites-available/hrpsolution
+ls /opt/hrpsolution/staticfiles/css/output.css
+
+# Nếu thiếu:
+cd /opt/hrpsolution/backend
+source /opt/hrpsolution/venv/bin/activate
+python manage.py collectstatic --noinput --clear
+deactivate
+
+sudo chown -R hrp:hrp /opt/hrpsolution/staticfiles
+sudo systemctl reload nginx
+```
+
+### Lỗi database connection
+
+```bash
+sudo systemctl status postgresql
+psql -h localhost -U hrp_user -d hrpsolution
+grep DB_ /opt/hrpsolution/.env
+```
+
+### Lỗi quyền trên socket hoặc thư mục
+
+```bash
+sudo chown -R hrp:hrp /opt/hrpsolution
+sudo usermod -aG hrp www-data
+sudo systemctl restart nginx hrpsolution
+```
+
+### Log theo thời gian thực
+
+```bash
+sudo journalctl -u hrpsolution -f
+sudo tail -f /var/log/nginx/error.log /var/log/nginx/access.log
+```
+
+---
+
+## 17. Backup PostgreSQL định kỳ
+
+### 17.1 Backup thủ công
+
+```bash
+sudo mkdir -p /backup/hrpsolution
+sudo chown postgres:postgres /backup/hrpsolution
+
+sudo -u postgres pg_dump -Fc hrpsolution > /backup/hrpsolution/backup_$(date +%Y%m%d_%H%M%S).dump
+```
+
+### 17.2 Tự động backup hàng ngày với cron
+
+```bash
+sudo chmod 750 /backup/hrpsolution
+sudo nano /opt/hrpsolution/backup_db.sh
+```
+
+```bash
+#!/bin/bash
+BACKUP_DIR="/backup/hrpsolution"
+DATE=$(date +%Y%m%d_%H%M%S)
+DBNAME="hrpsolution"
+
+pg_dump -Fc "$DBNAME" > "$BACKUP_DIR/hrpsolution_$DATE.dump"
+find "$BACKUP_DIR" -name "*.dump" -mtime +30 -delete
+echo "[$DATE] Backup hoan thanh: hrpsolution_$DATE.dump"
+```
+
+```bash
+sudo chmod +x /opt/hrpsolution/backup_db.sh
+sudo -u postgres crontab -e
+```
+
+Thêm dòng vào crontab:
+
+```
+0 2 * * * /opt/hrpsolution/backup_db.sh >> /opt/hrpsolution/logs/backup.log 2>&1
+```
+
+### 17.3 Restore từ backup
+
+```bash
+sudo -u postgres pg_restore -d hrpsolution /backup/hrpsolution/backup_YYYYMMDD_HHMMSS.dump
+```
+
+---
+
+## 18. Logrotate cho logs
+
+```bash
+sudo nano /etc/logrotate.d/hrpsolution
+```
+
+```
+/opt/hrpsolution/logs/*.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 hrp hrp
+    sharedscripts
+    postrotate
+        systemctl reload hrpsolution > /dev/null 2>&1 || true
+    endscript
+}
+```
+
+```bash
+sudo logrotate --debug /etc/logrotate.d/hrpsolution
+sudo logrotate --force /etc/logrotate.d/hrpsolution
+ls -lh /opt/hrpsolution/logs/
+```
+
+---
+
+## 19. Tối ưu PostgreSQL (tùy chọn)
+
+```bash
+sudo -u postgres psql -c "SHOW config_file;"
+sudo nano /etc/postgresql/16/main/postgresql.conf
+```
+
+| Tham số | 2GB RAM | 4GB RAM | Mô tả |
+|---------|---------|---------|-------|
+| `shared_buffers` | 512MB | 1GB | Cache chính (25% RAM) |
+| `work_mem` | 16MB | 32MB | Bộ nhớ mỗi sort/join |
+| `maintenance_work_mem` | 128MB | 256MB | VACUUM, CREATE INDEX |
+| `effective_cache_size` | 1536MB | 3GB | Ước tính cache OS (75% RAM) |
+| `max_connections` | 100 | 150 | Tối đa kết nối đồng thời |
+
+```bash
+sudo systemctl restart postgresql
+sudo -u postgres psql -c "SHOW shared_buffers; SHOW work_mem;"
+```
+
+---
+
+## Tổng quan kiến trúc deploy
+
+```
+Internet (port 80/443)
+        |
+        v
+   [Nginx]
+    |   +-- /static/ -> /opt/hrpsolution/staticfiles/   (file phuc vu truc tiep)
+    |   +-- /media/  -> /opt/hrpsolution/media/
+    |
+    | proxy_pass (Unix socket)
+    v
+[Gunicorn]  (systemd: hrpsolution.service)
+    |   +-- N workers (CPU x 2 + 1), 2 threads
+    |   +-- socket: /opt/hrpsolution/hrpsolution.sock
+    |
+    | Django ORM (psycopg)
+    v
+[PostgreSQL]  (systemd: postgresql.service)
+    +-- database: hrpsolution
+    +-- user: hrp_user
+```
+
+### Cấu trúc thư mục server (chuẩn, không lồng)
+
+```
+/opt/hrpsolution/
+├── backend/            <- Django source (config/, manage.py)
+├── frontend/
+│   ├── static/         <- vendor libs + output.css (tu git)
+│   └── templates/
+├── venv/                <- Python virtual environment
+├── staticfiles/         <- Output collectstatic -> Nginx serve
+├── media/                <- File upload users -> Nginx serve
+├── logs/                 <- gunicorn_access.log, gunicorn_error.log
+├── backup_db.sh
+├── hrpsolution.sock      <- Unix socket (Gunicorn <-> Nginx)
+├── hrpsolution.pid
+└── .env
+
+/backup/hrpsolution/
+└── hrpsolution_YYYYMMDD_HHMMSS.dump
+```
+
+### Tóm tắt file cấu hình quan trọng
+
+| File | Mô tả |
+|------|-------|
+| `/opt/hrpsolution/.env` | Biến môi trường production |
+| `/etc/systemd/system/hrpsolution.service` | Gunicorn systemd service |
+| `/etc/nginx/sites-available/hrpsolution` | Nginx virtual host |
+| `/opt/hrpsolution/logs/gunicorn_access.log` | Access log Gunicorn |
+| `/opt/hrpsolution/logs/gunicorn_error.log` | Error log Gunicorn |
+| `/var/log/nginx/access.log` | Access log Nginx |
+| `/var/log/nginx/error.log` | Error log Nginx |
+
+---
+
+*Tài liệu chuẩn hóa cho cấu trúc `/opt/hrpsolution/` (không lồng thư mục con repo).*

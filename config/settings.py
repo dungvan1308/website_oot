@@ -4,15 +4,31 @@ from pathlib import Path
 import environ
 from django.core.exceptions import ImproperlyConfigured
 
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# env = environ.Env(
+#     DJANGO_DEBUG=(bool, False),
+#     POSTGRES_PORT=(int, 5432),
+# )
+# environ.Env.read_env(BASE_DIR / ".env")
+
+# DEBUG = env("DJANGO_DEBUG")
+# SECRET_KEY = env("DJANGO_SECRET_KEY", default="")
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = BASE_DIR.parent
+
 env = environ.Env(
     DJANGO_DEBUG=(bool, False),
     POSTGRES_PORT=(int, 5432),
 )
-environ.Env.read_env(BASE_DIR / ".env")
+
+# Đọc .env ở thư mục gốc repository
+environ.Env.read_env(PROJECT_ROOT / ".env")
 
 DEBUG = env("DJANGO_DEBUG")
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="")
+
+
 if not SECRET_KEY:
     if DEBUG:
         SECRET_KEY = "django-insecure-local-development-only-key-change-before-deploy"
