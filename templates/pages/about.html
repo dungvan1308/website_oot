@@ -9,8 +9,8 @@
     {% include "components/page_hero.html" with breadcrumb_label="About" eyebrow=company_profile.name title=about_title description=company_profile.introduction %}
   {% endwith %}
   <section class="container-site grid gap-10 py-16 sm:py-24 md:grid-cols-2">
-    {% if company_profile.mission %}<article class="surface-card p-7 sm:p-9"><p class="eyebrow">{% translate "Our mission" %}</p><p class="mt-5 font-display text-2xl font-semibold leading-snug tracking-tight text-ocean-950">{{ company_profile.mission }}</p></article>{% endif %}
-    {% if company_profile.vision %}<article class="surface-card p-7 sm:p-9"><p class="eyebrow">{% translate "Our vision" %}</p><p class="mt-5 font-display text-2xl font-semibold leading-snug tracking-tight text-ocean-950">{{ company_profile.vision }}</p></article>{% endif %}
+    {% if company_profile.mission %}<article class="surface-card p-7 sm:p-9"><p class="eyebrow">{% translate "Our mission" %}</p><div class="ck-content mt-5 font-display text-2xl font-semibold leading-snug tracking-tight text-ocean-950">{{ company_profile.mission|safe }}</div></article>{% endif %}
+    {% if company_profile.vision %}<article class="surface-card p-7 sm:p-9"><p class="eyebrow">{% translate "Our vision" %}</p><div class="ck-content mt-5 font-display text-2xl font-semibold leading-snug tracking-tight text-ocean-950">{{ company_profile.vision|safe }}</div></article>{% endif %}
     {% if not company_profile.mission and not company_profile.vision %}<div class="md:col-span-2">{% include "components/section_heading.html" with eyebrow="Our focus" title="Connect data, systems and teams around outcomes that matter." description=company_profile.introduction %}</div>{% endif %}
   </section>
   <section class="bg-white py-16 sm:py-24">

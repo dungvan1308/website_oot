@@ -6,7 +6,7 @@
       <nav aria-label="{% translate 'Breadcrumb' %}" class="mb-7 text-xs font-medium text-white/55"><a href="{{ site_urls.home }}" class="hover:text-aqua-300">{% translate "Home" %}</a><span class="mx-2" aria-hidden="true">/</span><span aria-current="page" class="text-white/85">{% translate breadcrumb_label|default:title %}</span></nav>
       {% if eyebrow %}<p class="eyebrow text-aqua-300">{% translate eyebrow %}</p>{% endif %}
       <h1 class="mt-5 font-display text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{% translate title %}</h1>
-      <p class="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{% translate description %}</p>
+      {% translate description as translated_description %}<div class="ck-content mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{{ translated_description|safe }}</div>
     </div>
     <a class="button-primary hero-button-primary shrink-0" href="{{ site_urls.contact }}">{% translate "Talk to our experts" %} <span aria-hidden="true">→</span></a>
   </div>

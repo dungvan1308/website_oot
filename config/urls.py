@@ -12,6 +12,7 @@ sitemaps = {"pages": PublicPagesSitemap}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     path("robots.txt", robots, name="robots"),
     path("i18n/", include("django.conf.urls.i18n")),

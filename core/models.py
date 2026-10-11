@@ -7,17 +7,17 @@ from core.validators import validate_image_upload
 
 
 class PublishableContent(models.Model):
-    title = models.CharField(max_length=180)
-    slug = models.SlugField(max_length=190, unique=True)
-    summary = models.CharField(max_length=320, blank=True)
-    description = models.TextField(blank=True)
-    image = models.ImageField(upload_to="cms/content/", blank=True, validators=[validate_image_upload])
-    image_alt = models.CharField(max_length=180, blank=True)
-    is_published = models.BooleanField(default=False, db_index=True)
-    is_featured = models.BooleanField(default=False, db_index=True)
-    display_order = models.PositiveIntegerField(default=0, db_index=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(_("Title"), max_length=180)
+    slug = models.SlugField(_("Slug"), max_length=190, unique=True)
+    summary = models.TextField(_("Summary"), blank=True)
+    description = models.TextField(_("Description"), blank=True)
+    image = models.ImageField(_("Image"), upload_to="cms/content/", blank=True, validators=[validate_image_upload])
+    image_alt = models.CharField(_("Image alt text"), max_length=180, blank=True)
+    is_published = models.BooleanField(_("Is published"), default=False, db_index=True)
+    is_featured = models.BooleanField(_("Is featured"), default=False, db_index=True)
+    display_order = models.PositiveIntegerField(_("Display order"), default=0, db_index=True)
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
+    updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 
     class Meta:
         abstract = True
@@ -38,7 +38,7 @@ class SiteSettings(models.Model):
     contact_address = models.CharField(max_length=240, blank=True)
     hero_eyebrow = models.CharField(max_length=160, blank=True)
     hero_title = models.CharField(max_length=240, blank=True)
-    hero_description = models.CharField(max_length=500, blank=True)
+    hero_description = models.TextField(blank=True)
     hero_primary_label = models.CharField(max_length=80, blank=True)
     hero_primary_url = models.CharField(max_length=240, blank=True)
     hero_secondary_label = models.CharField(max_length=80, blank=True)
@@ -47,8 +47,8 @@ class SiteSettings(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "site settings"
-        verbose_name_plural = "site settings"
+        verbose_name = _("site settings")
+        verbose_name_plural = _("site settings")
 
     def save(self, *args, **kwargs):
         self.pk = 1
@@ -68,6 +68,10 @@ class CompanyProfile(models.Model):
     logo = models.ImageField(upload_to="cms/company/", blank=True, validators=[validate_image_upload])
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = _("company profile")
+        verbose_name_plural = _("company profiles")
+
     def __str__(self):
         return self.name
 
@@ -84,12 +88,13 @@ class Service(PublishableContent):
         BANKING_TECHNOLOGY = "banking_technology", _("Banking technology")
         CLOUD_TRANSFORMATION = "cloud_transformation", _("Cloud & digital transformation")
 
-    category = models.CharField(max_length=32, choices=Category.choices, db_index=True)
-    capabilities = models.TextField(blank=True, help_text="Enter one capability per line.")
+    category = models.CharField(_("Category"), max_length=32, choices=Category.choices, db_index=True)
+    capabilities = models.TextField(blank=True, help_text=_("Enter one capability per line."))
     business_value = models.TextField(blank=True)
 
     class Meta(PublishableContent.Meta):
-        verbose_name_plural = "services"
+        verbose_name = _("service")
+        verbose_name_plural = _("services")
 
 
 class Solution(PublishableContent):
@@ -97,43 +102,70 @@ class Solution(PublishableContent):
     business_value = models.TextField(blank=True)
     services = models.ManyToManyField(Service, blank=True, related_name="solutions")
 
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("solution")
+        verbose_name_plural = _("solutions")
+
 
 class Technology(PublishableContent):
     category = models.CharField(max_length=120, blank=True)
     website = models.URLField(blank=True, validators=[URLValidator(schemes=["https"])])
 
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("technology")
+        verbose_name_plural = _("technologies")
+
 
 class Product(PublishableContent):
-    features = models.TextField(blank=True, help_text="Enter one feature per line.")
+    features = models.TextField(blank=True, help_text=_("Enter one feature per line."))
     business_value = models.TextField(blank=True)
     technologies = models.ManyToManyField(Technology, blank=True, related_name="products")
 
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("product")
+        verbose_name_plural = _("products")
+
 
 class Industry(PublishableContent):
-    focus_areas = models.TextField(blank=True, help_text="Enter one focus area per line.")
+    focus_areas = models.TextField(blank=True, help_text=_("Enter one focus area per line."))
     solutions = models.ManyToManyField(Solution, blank=True, related_name="industries")
 
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("industry")
+        verbose_name_plural = _("industries")
 
 class CaseStudy(PublishableContent):
     category = models.CharField(max_length=120, blank=True)
     challenge = models.TextField()
     solution = models.TextField()
-    architecture = models.TextField(blank=True, help_text="Enter one architecture layer per line.")
+    architecture = models.TextField(blank=True, help_text=_("Enter one architecture layer per line."))
     technologies = models.ManyToManyField(Technology, blank=True, related_name="case_studies")
-    implementation = models.TextField(blank=True, help_text="Enter one implementation step per line.")
-    business_impact = models.TextField(blank=True, help_text="Enter one outcome per line.")
-    is_illustrative = models.BooleanField(default=True, help_text="Keep enabled for illustrative scenarios. Disable only for a confirmed, approved client engagement.")
+    implementation = models.TextField(blank=True, help_text=_("Enter one implementation step per line."))
+    business_impact = models.TextField(blank=True, help_text=_("Enter one outcome per line."))
+    is_illustrative = models.BooleanField(default=True, help_text=_("Keep enabled for illustrative scenarios. Disable only for a confirmed, approved client engagement."))
+
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("case study")
+        verbose_name_plural = _("case studies")
 
 
 class Article(PublishableContent):
-    category = models.CharField(max_length=120, blank=True)
+    category = models.CharField(_("Category"), max_length=120, blank=True)
     content = models.TextField(blank=True)
     reading_time = models.CharField(max_length=32, blank=True)
+
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("article")
+        verbose_name_plural = _("articles")
 
 
 class Partner(PublishableContent):
     website = models.URLField(blank=True, validators=[URLValidator(schemes=["https"])])
-    relationship_type = models.CharField(max_length=120, blank=True, help_text="Use precise, verified wording for any relationship claim.")
+    relationship_type = models.CharField(max_length=120, blank=True, help_text=_("Use precise, verified wording for any relationship claim."))
+
+    class Meta(PublishableContent.Meta):
+        verbose_name = _("partner")
+        verbose_name_plural = _("partners")
 
 
 class Statistic(models.Model):
@@ -146,13 +178,15 @@ class Statistic(models.Model):
 
     class Meta:
         ordering = ["display_order", "id"]
+        verbose_name = _("statistic")
+        verbose_name_plural = _("statistics")
 
     def __str__(self):
         return f"{self.value} — {self.label}"
 
 
 class SEOSetting(models.Model):
-    path = models.CharField(max_length=240, help_text="Localized page path, for example /vi/services/.")
+    path = models.CharField(max_length=240, help_text=_("Localized page path, for example /vi/services/."))
     language = models.CharField(max_length=2, choices=(("vi", _("Vietnamese")), ("en", _("English"))), default="en")
     title = models.CharField(max_length=180, blank=True)
     meta_description = models.CharField(max_length=320, blank=True)
@@ -164,8 +198,8 @@ class SEOSetting(models.Model):
     class Meta:
         ordering = ["path"]
         constraints = [models.UniqueConstraint(fields=("path", "language"), name="unique_seo_path_language")]
-        verbose_name = "SEO setting"
-        verbose_name_plural = "SEO settings"
+        verbose_name = _("SEO setting")
+        verbose_name_plural = _("SEO settings")
 
     def __str__(self):
         return f"{self.path} ({self.language})"
@@ -181,7 +215,7 @@ class TranslationFields(models.Model):
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
     status = models.CharField(max_length=12, choices=Status.choices, default=Status.DRAFT, db_index=True)
     title = models.CharField(max_length=180)
-    summary = models.CharField(max_length=320, blank=True)
+    summary = models.TextField(blank=True)
     description = models.TextField(blank=True)
     seo_title = models.CharField(max_length=180, blank=True)
     seo_description = models.CharField(max_length=320, blank=True)
@@ -276,7 +310,7 @@ class SiteSettingsTranslation(TranslationFields):
     default_meta_description = models.CharField(max_length=320, blank=True)
     hero_eyebrow = models.CharField(max_length=160, blank=True)
     hero_title = models.CharField(max_length=240, blank=True)
-    hero_description = models.CharField(max_length=500, blank=True)
+    hero_description = models.TextField(blank=True)
     hero_primary_label = models.CharField(max_length=80, blank=True)
     hero_primary_url = models.CharField(max_length=240, blank=True)
     hero_secondary_label = models.CharField(max_length=80, blank=True)
@@ -314,8 +348,8 @@ class ContactRequest(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        verbose_name = "contact request"
-        verbose_name_plural = "contact requests"
+        verbose_name = _("contact request")
+        verbose_name_plural = _("contact requests")
 
     def __str__(self):
         return f"{self.name} — {self.get_interest_display()}"

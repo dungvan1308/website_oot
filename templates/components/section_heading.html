@@ -2,5 +2,5 @@
 <div class="{% if align == 'center' %}mx-auto text-center{% endif %}">
   {% if eyebrow %}<p class="eyebrow{% if align == 'center' %} justify-center{% endif %}">{% translate eyebrow %}</p>{% endif %}
   <h2 class="section-heading mt-4{% if align == 'center' %} mx-auto{% endif %}">{% translate title %}</h2>
-  {% if description %}<p class="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8{% if align == 'center' %} mx-auto{% endif %}">{% translate description %}</p>{% endif %}
+  {% if description %}{% translate description as translated_description %}<div class="ck-content mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg sm:leading-8{% if align == 'center' %} mx-auto{% endif %}">{{ translated_description|safe }}</div>{% endif %}
 </div>

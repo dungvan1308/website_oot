@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/admin-language-switcher.css' %}">
+{% endblock %}
+
+{% block title %}{{ title }} | Ocean One Technology CMS Administration{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name"><a href="{% url 'admin:index' %}">{% translate "Ocean One Technology CMS Administration" %}</a></h1>
+{% endblock %}
+
+{% block userlinks %}
+  {{ block.super }}
+  <form class="admin-language-switcher" action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <span class="visually-hidden">{% translate "Choose language" %}</span>
+    <button class="language-option{% if LANGUAGE_CODE == 'vi' %} is-active{% endif %}" type="submit" name="language" value="vi" lang="vi"{% if LANGUAGE_CODE == 'vi' %} aria-current="true"{% endif %} aria-label="{% translate 'View this page in Vietnamese' %}">
+      <svg class="language-flag" viewBox="0 0 30 20" aria-hidden="true" focusable="false"><rect width="30" height="20" rx="2" fill="#da251d"/><path d="m15 3.2 1.45 4.45h4.68l-3.79 2.75 1.45 4.45L15 12.1l-3.79 2.75 1.45-4.45-3.79-2.75h4.68z" fill="#ff0"/></svg> VI
+    </button>
+    <span class="language-divider" aria-hidden="true">|</span>
+    <button class="language-option{% if LANGUAGE_CODE == 'en' %} is-active{% endif %}" type="submit" name="language" value="en" lang="en"{% if LANGUAGE_CODE == 'en' %} aria-current="true"{% endif %} aria-label="{% translate 'View this page in English' %}">
+      <svg class="language-flag" viewBox="0 0 60 30" aria-hidden="true" focusable="false"><path fill="#012169" d="M0 0h60v30H0z"/><path stroke="#fff" stroke-width="6" d="m0 0 60 30M60 0 0 30"/><path stroke="#c8102e" stroke-width="2" d="m0 0 60 30M60 0 0 30"/><path stroke="#fff" stroke-width="10" d="M30 0v30M0 15h60"/><path stroke="#c8102e" stroke-width="6" d="M30 0v30M0 15h60"/></svg> EN
+    </button>
+  </form>
+{% endblock %}

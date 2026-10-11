@@ -49,8 +49,61 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django_ckeditor_5",
     "core.apps.CoreConfig",
 ]
+
+CKEDITOR_5_USER_LANGUAGE = True
+CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
+CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
+CKEDITOR_5_UPLOAD_FILE_TYPES = [
+    "jpeg", "jpg", "png", "gif", "bmp", "webp", "tiff",
+    "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "csv", "txt",
+]
+CKEDITOR_5_MAX_FILE_SIZE = 5
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "blockToolbar": [
+            "paragraph", "heading1", "heading2", "heading3", "|",
+            "bulletedList", "numberedList", "|", "blockQuote",
+        ],
+        "toolbar": {
+            "items": [
+                "heading", "|", "outdent", "indent", "|", "bold", "italic", "underline",
+                "strikethrough", "link", "code", "subscript", "superscript", "highlight", "|",
+                "alignment", "codeBlock", "sourceEditing", "htmlEmbed", "insertImage",
+                "bulletedList", "numberedList", "todoList",
+                "|", "blockQuote", "imageUpload", "fileUpload", "|", "fontSize", "fontFamily",
+                "fontColor", "fontBackgroundColor", "mediaEmbed", "removeFormat", "insertTable", "|",
+                "horizontalLine", "pageBreak", "specialCharacters", "emoji", "style", "findAndReplace",
+                "selectAll", "showBlocks", "undo", "redo",
+            ],
+            "shouldNotGroupWhenFull": True,
+        },
+        "image": {
+            "toolbar": [
+                "imageTextAlternative", "|", "imageStyle:alignLeft", "imageStyle:alignRight",
+                "imageStyle:alignCenter", "imageStyle:side", "|", "resizeImage",
+            ],
+            "styles": ["full", "side", "alignLeft", "alignRight", "alignCenter"],
+        },
+        "table": {
+            "contentToolbar": [
+                "tableColumn", "tableRow", "mergeTableCells", "tableProperties", "tableCellProperties",
+            ],
+        },
+        "heading": {
+            "options": [
+                {"model": "paragraph", "title": "Paragraph", "class": "ck-heading_paragraph"},
+                {"model": "heading1", "view": "h1", "title": "Heading 1", "class": "ck-heading_heading1"},
+                {"model": "heading2", "view": "h2", "title": "Heading 2", "class": "ck-heading_heading2"},
+                {"model": "heading3", "view": "h3", "title": "Heading 3", "class": "ck-heading_heading3"},
+            ],
+        },
+        "list": {"properties": {"styles": True, "startIndex": True, "reversed": True}},
+        "language": {"ui": ["vi", "en"]},
+    },
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -4,8 +4,8 @@
   <div class="p-6 sm:p-8">
     {% if industry %}<p class="text-xs font-bold uppercase tracking-[0.14em] text-aqua-300">{{ industry }}{% if is_illustrative %} · {% translate "Illustrative" %}{% endif %}</p>{% endif %}
     <h3 class="mt-3 font-display text-2xl font-semibold tracking-tight">{{ title }}</h3>
-    <p class="mt-3 text-sm leading-6 text-white/65">{{ summary }}</p>
-    {% if impact %}<p class="mt-6 border-t border-white/15 pt-5 text-sm font-semibold text-white">{{ impact }}</p>{% endif %}
+    <div class="ck-content mt-3 text-sm leading-6 text-white/65">{{ summary|safe }}</div>
+    {% if impact %}<div class="ck-content mt-6 border-t border-white/15 pt-5 text-sm font-semibold text-white">{{ impact|safe }}</div>{% endif %}
     {% if href %}<a class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-aqua-300" href="{{ href }}">{% translate "Read case study" %} <span aria-hidden="true">→</span></a>{% endif %}
   </div>
 </article>
