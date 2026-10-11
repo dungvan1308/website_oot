@@ -13,12 +13,12 @@
     {% for study in case_studies %}
       <article class="case-detail" id="{{ study.id }}">
         <div class="case-detail-heading">
-          <div><p class="eyebrow">{{ study.category }}{% if study.is_illustrative %} · {% translate "Illustrative scenario" %}{% else %} · {% translate "Client engagement" %}{% endif %}</p><h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] text-ocean-950 sm:text-4xl">{{ study.title }}</h2><p class="mt-4 max-w-3xl text-base leading-7 text-muted">{{ study.summary }}</p></div>
+          <div><p class="eyebrow">{{ study.category }}{% if study.is_illustrative %} · {% translate "Illustrative scenario" %}{% else %} · {% translate "Client engagement" %}{% endif %}</p><h2 class="mt-4 font-display text-3xl font-semibold leading-tight tracking-[-0.04em] text-ocean-950 sm:text-4xl">{{ study.title }}</h2><div class="ck-content mt-4 max-w-3xl text-base leading-7 text-muted">{{ study.summary|safe }}</div></div>
           <span class="case-detail-number">0{{ forloop.counter }}</span>
         </div>
         <div class="case-flow-grid mt-8">
-          <section class="case-flow-step"><p class="case-flow-label">01 / {% translate "Challenge" %}</p><p>{{ study.challenge }}</p></section>
-          <section class="case-flow-step"><p class="case-flow-label">02 / {% translate "Solution" %}</p><p>{{ study.solution }}</p></section>
+          <section class="case-flow-step"><p class="case-flow-label">01 / {% translate "Challenge" %}</p><div class="ck-content">{{ study.challenge|safe }}</div></section>
+          <section class="case-flow-step"><p class="case-flow-label">02 / {% translate "Solution" %}</p><div class="ck-content">{{ study.solution|safe }}</div></section>
           <section class="case-flow-step"><p class="case-flow-label">03 / {% translate "Architecture" %}</p><ul>{% for item in study.architecture %}<li>{{ item }}</li>{% endfor %}</ul></section>
           <section class="case-flow-step"><p class="case-flow-label">04 / {% translate "Technology" %}</p><ul>{% for item in study.technology %}<li>{{ item }}</li>{% endfor %}</ul></section>
           <section class="case-flow-step"><p class="case-flow-label">05 / {% translate "Implementation" %}</p><ul>{% for item in study.implementation %}<li>{{ item }}</li>{% endfor %}</ul></section>

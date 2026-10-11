@@ -1150,6 +1150,29 @@
     font-size: 0.875rem;
   }
 
+  .ck-content > * + * {
+    margin-top: 0.65em;
+  }
+
+  .ck-content ul,
+  .ck-content ol {
+    padding-left: 1.35em;
+  }
+
+  .ck-content ul {
+    list-style: disc;
+  }
+
+  .ck-content ol {
+    list-style: decimal;
+  }
+
+  .ck-content a {
+    color: var(--color-ocean-600);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
   @media (max-width: 480px) {
     .intro-visual {
       min-height: 17rem;

@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.core.exceptions import FieldDoesNotExist
-from django.utils.translation import gettext_lazy as _
+from django.db import models
+from django.db.models import Case, IntegerField, Q, Value, When
+from django.utils.translation import get_language, gettext_lazy as _
+from django_ckeditor_5.widgets import CKEditor5Widget
 from core.models import (
     Article,
     CaseStudy,
@@ -30,7 +33,45 @@ admin.site.site_title = _("Ocean One Technology CMS")
 admin.site.index_title = _("Manage website content")
 
 
-class LanguageTranslationInline(admin.StackedInline):
+def get_translation_for_language(obj):
+    """Return this record's translation for the language selected in admin."""
+    translations = getattr(obj, "translations", None)
+    if translations is None:
+        return None
+    language = get_language() or "en"
+    return next((item for item in translations.all() if item.language == language), None)
+
+
+def localized_value(obj, field_name):
+    translation = get_translation_for_language(obj)
+    translated_value = getattr(translation, field_name, "") if translation else ""
+    return translated_value or getattr(obj, field_name, "")
+
+
+RICH_TEXT_EXCLUDED_FIELDS = {
+    # These fields are rendered as individual list items by the public site.
+    "capabilities",
+    "features",
+    "focus_areas",
+    "architecture",
+    "implementation",
+    "business_impact",
+    # This is customer-submitted plain text, not CMS-authored content.
+    "message",
+}
+
+
+class RichTextAdminMixin:
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if (
+            isinstance(db_field, models.TextField)
+            and db_field.name not in RICH_TEXT_EXCLUDED_FIELDS
+        ):
+            kwargs["widget"] = CKEditor5Widget(config_name="default")
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+
+class LanguageTranslationInline(RichTextAdminMixin, admin.StackedInline):
     extra = 0
     max_num = 2
     ordering = ("language",)
@@ -39,6 +80,17 @@ class LanguageTranslationInline(admin.StackedInline):
         (_("Translated content"), {"fields": ("title", "summary", "description")} ),
         (_("Language-specific SEO"), {"fields": ("seo_title", "seo_description"), "classes": ("collapse",)}),
     )
+
+    def get_queryset(self, request):
+        language = get_language() or "en"
+        return super().get_queryset(request).order_by(
+            Case(
+                When(language=language, then=Value(0)),
+                default=Value(1),
+                output_field=IntegerField(),
+            ),
+            "language",
+        )
 
 
 class ServiceTranslationInline(LanguageTranslationInline):
@@ -123,7 +175,36 @@ class TranslationPublicationFilter(admin.SimpleListFilter):
         return queryset.filter(translations__status=self.value()).distinct() if self.value() else queryset
 
 
-class PublishableContentAdmin(admin.ModelAdmin):
+class LocalizedCategoryFilter(admin.SimpleListFilter):
+    title = _("Category")
+    parameter_name = "category"
+
+    def lookups(self, request, model_admin):
+        values = {
+            model_admin.get_localized_category(obj)
+            for obj in model_admin.get_queryset(request)
+        }
+        return tuple((value, value) for value in sorted(values, key=str.casefold) if value)
+
+    def queryset(self, request, queryset):
+        if not self.value():
+            return queryset
+        language = get_language() or "en"
+        model = queryset.model
+        localized_ids = model._default_manager.filter(
+            translations__language=language,
+            translations__category=self.value(),
+        ).values("pk")
+        translated_ids = model._default_manager.filter(
+            translations__language=language,
+        ).exclude(translations__category="").values("pk")
+        fallback_ids = model._default_manager.filter(category=self.value()).exclude(
+            pk__in=translated_ids
+        ).values("pk")
+        return queryset.filter(Q(pk__in=localized_ids) | Q(pk__in=fallback_ids)).distinct()
+
+
+class PublishableContentAdmin(RichTextAdminMixin, admin.ModelAdmin):
     has_translations = True
     list_display = ("title", "vi_translation_status", "en_translation_status", "is_published", "is_featured", "display_order", "updated_at")
     list_filter = ("is_published", "is_featured", TranslationLanguageFilter, TranslationPublicationFilter, "updated_at")
@@ -144,6 +225,30 @@ class PublishableContentAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         return queryset.prefetch_related("translations") if self.has_translations else queryset
+
+    def get_list_display(self, request):
+        display = super().get_list_display(request)
+        return tuple(
+            "localized_title" if name == "title" else
+            "localized_category" if name == "category" else name
+            for name in display
+        )
+
+    @admin.display(description=_("Title"), ordering="title")
+    def localized_title(self, obj):
+        return localized_value(obj, "title")
+
+    def get_localized_category(self, obj):
+        translation = get_translation_for_language(obj)
+        translated = getattr(translation, "category", "") if translation else ""
+        if translated:
+            return translated
+        get_display = getattr(obj, "get_category_display", None)
+        return get_display() if get_display else getattr(obj, "category", "")
+
+    @admin.display(description=_("Category"), ordering="category")
+    def localized_category(self, obj):
+        return self.get_localized_category(obj)
 
     @admin.display(description=_("VI"))
     def vi_translation_status(self, obj):
@@ -219,7 +324,7 @@ class TechnologyAdmin(PublishableContentAdmin):
 class CaseStudyAdmin(PublishableContentAdmin):
     inlines = (CaseStudyTranslationInline,)
     list_display = ("title", "category", "vi_translation_status", "en_translation_status", "is_illustrative", "is_published", "is_featured", "display_order")
-    list_filter = (*PublishableContentAdmin.list_filter, "category", "is_illustrative")
+    list_filter = (*PublishableContentAdmin.list_filter, LocalizedCategoryFilter, "is_illustrative")
     search_fields = PublishableContentAdmin.search_fields + ("challenge", "solution", "business_impact")
     filter_horizontal = ("technologies",)
     fieldsets = PublishableContentAdmin.fieldsets[:2] + (
@@ -231,7 +336,7 @@ class CaseStudyAdmin(PublishableContentAdmin):
 class ArticleAdmin(PublishableContentAdmin):
     inlines = (ArticleTranslationInline,)
     list_display = ("title", "category", "vi_translation_status", "en_translation_status", "is_published", "is_featured", "display_order", "updated_at")
-    list_filter = (*PublishableContentAdmin.list_filter, "category")
+    list_filter = (*PublishableContentAdmin.list_filter, LocalizedCategoryFilter)
     search_fields = PublishableContentAdmin.search_fields + ("content", "category")
     fieldsets = PublishableContentAdmin.fieldsets[:2] + (
         (_("Article details"), {"fields": ("category", "reading_time", "content")}),
@@ -260,9 +365,9 @@ class StatisticAdmin(admin.ModelAdmin):
 
 
 @admin.register(CompanyProfile)
-class CompanyProfileAdmin(admin.ModelAdmin):
+class CompanyProfileAdmin(RichTextAdminMixin, admin.ModelAdmin):
     inlines = (CompanyProfileTranslationInline,)
-    list_display = ("name", "vi_translation_status", "en_translation_status", "tagline", "updated_at")
+    list_display = ("localized_name", "vi_translation_status", "en_translation_status", "localized_tagline", "updated_at")
     list_filter = (TranslationLanguageFilter, TranslationPublicationFilter, "updated_at")
     search_fields = ("name", "tagline", "introduction")
     readonly_fields = ("updated_at",)
@@ -273,6 +378,17 @@ class CompanyProfileAdmin(admin.ModelAdmin):
         (_("Dates"), {"fields": ("updated_at",)}),
     )
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related("translations")
+
+    @admin.display(description=_("Company name"), ordering="name")
+    def localized_name(self, obj):
+        return localized_value(obj, "name")
+
+    @admin.display(description=_("Tagline"), ordering="tagline")
+    def localized_tagline(self, obj):
+        return localized_value(obj, "tagline")
+
     def has_add_permission(self, request):
         return not CompanyProfile.objects.exists() and super().has_add_permission(request)
 
@@ -281,9 +397,9 @@ class CompanyProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(SiteSettings)
-class SiteSettingsAdmin(admin.ModelAdmin):
+class SiteSettingsAdmin(RichTextAdminMixin, admin.ModelAdmin):
     inlines = (SiteSettingsTranslationInline,)
-    list_display = ("site_name", "vi_translation_status", "en_translation_status", "contact_email", "updated_at")
+    list_display = ("localized_site_name", "vi_translation_status", "en_translation_status", "contact_email", "updated_at")
     list_filter = (TranslationLanguageFilter, TranslationPublicationFilter, "updated_at")
     readonly_fields = ("updated_at",)
     fieldsets = (
@@ -293,6 +409,13 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         (_("Contact details"), {"fields": ("contact_email", "contact_phone", "contact_address")}),
         (_("Dates"), {"fields": ("updated_at",)}),
     )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related("translations")
+
+    @admin.display(description=_("Site name"), ordering="site_name")
+    def localized_site_name(self, obj):
+        return localized_value(obj, "site_name")
 
     def has_add_permission(self, request):
         return not SiteSettings.objects.exists() and super().has_add_permission(request)

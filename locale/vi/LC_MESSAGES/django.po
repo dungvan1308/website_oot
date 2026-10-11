@@ -1125,3 +1125,48 @@ msgstr "Vui lòng tải ảnh JPG, PNG hoặc WebP."
 
 msgid "Image files must be 5 MB or smaller."
 msgstr "Dung lượng ảnh không được vượt quá 5 MB."
+
+msgid "Choose language"
+msgstr "Chọn ngôn ngữ"
+
+msgid "Model name"
+msgstr "Tên mục"
+
+msgid "Add link"
+msgstr "Liên kết thêm mới"
+
+msgid "Change or view list link"
+msgstr "Liên kết chỉnh sửa hoặc xem danh sách"
+
+msgid "Toggle theme (current theme: auto)"
+msgstr "Chuyển giao diện (hiện tại: tự động)"
+
+msgid "Toggle theme (current theme: light)"
+msgstr "Chuyển giao diện (hiện tại: sáng)"
+
+msgid "Toggle theme (current theme: dark)"
+msgstr "Chuyển giao diện (hiện tại: tối)"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "Breadcrumbs"
+msgstr "Điều hướng phân cấp"
+
+msgid "Toggle navigation"
+msgstr "Bật/tắt điều hướng"
+
+msgid "Sidebar"
+msgstr "Thanh bên"
+
+msgid "Filter navigation items"
+msgstr "Lọc mục điều hướng"
+
+msgid "Models in the %(name)s application"
+msgstr "Các mục trong ứng dụng %(name)s"
+
+msgid "Select all objects on this page for an action"
+msgstr "Chọn tất cả mục trên trang để thực hiện thao tác"
+
+msgid "Select this object for an action"
+msgstr "Chọn mục này để thực hiện thao tác"

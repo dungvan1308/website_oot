@@ -4,7 +4,7 @@
     <div class="max-w-3xl">
       {% if eyebrow %}<p class="eyebrow text-aqua-300">{{ eyebrow }}</p>{% endif %}
       <h1 class="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{{ title }}</h1>
-      {% if description %}<p class="mt-6 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{{ description }}</p>{% endif %}
+      {% if description %}<div class="ck-content mt-6 max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">{{ description|safe }}</div>{% endif %}
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         {% if primary_label %}{% include "components/button.html" with href=primary_href label=primary_label variant="primary" arrow=True extra_class="hero-button-primary" %}{% endif %}
         {% if secondary_label %}{% include "components/button.html" with href=secondary_href label=secondary_label variant="secondary" extra_class="hero-button-secondary" %}{% endif %}
