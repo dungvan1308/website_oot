@@ -1,0 +1,62 @@
+#user-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.admin-language-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+}
+
+.admin-language-switcher .language-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  border: 0;
+  color: #111 !important;
+  opacity: 1 !important;
+  font-weight: 700;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.admin-language-switcher .language-flag {
+  display: inline-block;
+  width: 1.15rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+.admin-language-switcher .language-option:hover,
+.admin-language-switcher .language-option:focus-visible,
+.admin-language-switcher .language-option.is-active {
+  color: #111 !important;
+}
+
+.admin-language-switcher .language-divider {
+  padding: 0 0.4rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  #user-tools {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}

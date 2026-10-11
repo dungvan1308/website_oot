@@ -714,3 +714,414 @@ msgstr "không bắt buộc"
 
 msgid "you@company.com"
 msgstr "ban@congty.com"
+
+msgid "Manage website content"
+msgstr "Quản lý nội dung website"
+
+msgid "Language and status"
+msgstr "Ngôn ngữ và trạng thái"
+
+msgid "Translated content"
+msgstr "Nội dung bản dịch"
+
+msgid "Language-specific SEO"
+msgstr "SEO theo ngôn ngữ"
+
+msgid "Service details"
+msgstr "Chi tiết dịch vụ"
+
+msgid "Solution details"
+msgstr "Chi tiết giải pháp"
+
+msgid "Product details"
+msgstr "Chi tiết sản phẩm"
+
+msgid "Industry details"
+msgstr "Chi tiết ngành"
+
+msgid "Case study details"
+msgstr "Chi tiết nghiên cứu tình huống"
+
+msgid "Article details"
+msgstr "Chi tiết bài viết"
+
+msgid "Company details"
+msgstr "Chi tiết công ty"
+
+msgid "Translation language"
+msgstr "Ngôn ngữ bản dịch"
+
+msgid "Missing translation"
+msgstr "Thiếu bản dịch"
+
+msgid "Translation status"
+msgstr "Trạng thái bản dịch"
+
+msgid "Publishing"
+msgstr "Xuất bản"
+
+msgid "Dates"
+msgstr "Thời gian"
+
+msgid "Missing"
+msgstr "Chưa có"
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Slug"
+msgstr "Đường dẫn tĩnh"
+
+msgid "Summary"
+msgstr "Tóm tắt"
+
+msgid "Description"
+msgstr "Mô tả"
+
+msgid "Image"
+msgstr "Hình ảnh"
+
+msgid "Image alt text"
+msgstr "Văn bản thay thế hình ảnh"
+
+msgid "Is published"
+msgstr "Đã xuất bản"
+
+msgid "Is featured"
+msgstr "Nổi bật"
+
+msgid "Display order"
+msgstr "Thứ tự hiển thị"
+
+msgid "Created at"
+msgstr "Ngày tạo"
+
+msgid "Updated at"
+msgstr "Cập nhật lúc"
+
+msgid "ID"
+msgstr "Mã"
+
+msgid "Category"
+msgstr "Danh mục"
+
+msgid "Show counts"
+msgstr "Hiển thị số lượng"
+
+msgid "Ocean One Technology CMS Administration"
+msgstr "Quản trị CMS Ocean One Technology"
+
+msgid "Ocean One Technology CMS"
+msgstr "CMS Ocean One Technology"
+
+msgid "site settings"
+msgstr "cài đặt website"
+
+msgid "company profile"
+msgstr "hồ sơ công ty"
+
+msgid "company profiles"
+msgstr "hồ sơ công ty"
+
+msgid "service"
+msgstr "dịch vụ"
+
+msgid "services"
+msgstr "dịch vụ"
+
+msgid "solution"
+msgstr "giải pháp"
+
+msgid "solutions"
+msgstr "giải pháp"
+
+msgid "technology"
+msgstr "công nghệ"
+
+msgid "technologies"
+msgstr "công nghệ"
+
+msgid "product"
+msgstr "sản phẩm"
+
+msgid "products"
+msgstr "sản phẩm"
+
+msgid "industry"
+msgstr "ngành"
+
+msgid "industries"
+msgstr "ngành"
+
+msgid "case study"
+msgstr "nghiên cứu tình huống"
+
+msgid "case studies"
+msgstr "nghiên cứu tình huống"
+
+msgid "article"
+msgstr "bài viết"
+
+msgid "articles"
+msgstr "bài viết"
+
+msgid "partner"
+msgstr "đối tác"
+
+msgid "partners"
+msgstr "đối tác"
+
+msgid "statistic"
+msgstr "thống kê"
+
+msgid "statistics"
+msgstr "thống kê"
+
+msgid "SEO setting"
+msgstr "cài đặt SEO"
+
+msgid "SEO settings"
+msgstr "cài đặt SEO"
+
+msgid "contact request"
+msgstr "yêu cầu liên hệ"
+
+msgid "contact requests"
+msgstr "yêu cầu liên hệ"
+
+msgid "Homepage settings"
+msgstr "Cài đặt trang chủ"
+
+msgid "Technology details"
+msgstr "Chi tiết công nghệ"
+
+msgid "Case study flow"
+msgstr "Nội dung nghiên cứu tình huống"
+
+msgid "Relationship details"
+msgstr "Chi tiết quan hệ đối tác"
+
+msgid "Homepage introduction"
+msgstr "Giới thiệu trang chủ"
+
+msgid "Site identity"
+msgstr "Thông tin website"
+
+msgid "Homepage hero"
+msgstr "Banner trang chủ"
+
+msgid "Default SEO"
+msgstr "SEO mặc định"
+
+msgid "Contact details"
+msgstr "Thông tin liên hệ"
+
+msgid "Mark selected enquiries as in progress"
+msgstr "Đánh dấu yêu cầu đã chọn đang xử lý"
+
+msgid "Close selected enquiries"
+msgstr "Đóng yêu cầu đã chọn"
+
+msgid "Website content"
+msgstr "Nội dung website"
+
+msgid "Site name"
+msgstr "Tên website"
+
+msgid "Tagline"
+msgstr "Thông điệp thương hiệu"
+
+msgid "Default meta description"
+msgstr "Mô tả meta mặc định"
+
+msgid "Contact email"
+msgstr "Email liên hệ"
+
+msgid "Contact phone"
+msgstr "Điện thoại liên hệ"
+
+msgid "Contact address"
+msgstr "Địa chỉ liên hệ"
+
+msgid "Hero eyebrow"
+msgstr "Nhãn mở đầu banner"
+
+msgid "Hero title"
+msgstr "Tiêu đề banner"
+
+msgid "Hero description"
+msgstr "Mô tả banner"
+
+msgid "Primary button label"
+msgstr "Nhãn nút chính"
+
+msgid "Primary button URL"
+msgstr "Đường dẫn nút chính"
+
+msgid "Secondary button label"
+msgstr "Nhãn nút phụ"
+
+msgid "Secondary button URL"
+msgstr "Đường dẫn nút phụ"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Homepage introduction heading"
+msgstr "Tiêu đề giới thiệu trang chủ"
+
+msgid "Introduction"
+msgstr "Giới thiệu"
+
+msgid "Mission"
+msgstr "Sứ mệnh"
+
+msgid "Vision"
+msgstr "Tầm nhìn"
+
+msgid "Capabilities"
+msgstr "Năng lực"
+
+msgid "Business value"
+msgstr "Giá trị kinh doanh"
+
+msgid "Features"
+msgstr "Tính năng"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Business impact"
+msgstr "Tác động kinh doanh"
+
+msgid "Illustrative example"
+msgstr "Ví dụ minh họa"
+
+msgid "Content"
+msgstr "Nội dung"
+
+msgid "Reading time"
+msgstr "Thời gian đọc"
+
+msgid "Relationship type"
+msgstr "Loại quan hệ"
+
+msgid "Value"
+msgstr "Giá trị"
+
+msgid "Label"
+msgstr "Nhãn"
+
+msgid "Path"
+msgstr "Đường dẫn"
+
+msgid "Language"
+msgstr "Ngôn ngữ"
+
+msgid "Meta description"
+msgstr "Mô tả meta"
+
+msgid "Canonical URL"
+msgstr "URL chuẩn"
+
+msgid "Social sharing image"
+msgstr "Ảnh chia sẻ mạng xã hội"
+
+msgid "Allow search indexing"
+msgstr "Cho phép công cụ tìm kiếm lập chỉ mục"
+
+msgid "Status"
+msgstr "Trạng thái"
+
+msgid "SEO title"
+msgstr "Tiêu đề SEO"
+
+msgid "SEO description"
+msgstr "Mô tả SEO"
+
+msgid "Service"
+msgstr "Dịch vụ"
+
+msgid "Product"
+msgstr "Sản phẩm"
+
+msgid "Industry"
+msgstr "Ngành"
+
+msgid "Case study"
+msgstr "Nghiên cứu tình huống"
+
+msgid "Article"
+msgstr "Bài viết"
+
+msgid "Company profile"
+msgstr "Hồ sơ công ty"
+
+msgid "Site settings"
+msgstr "Cài đặt website"
+
+msgid "Email address"
+msgstr "Địa chỉ email"
+
+msgid "Message"
+msgstr "Nội dung liên hệ"
+
+msgid "Consent to be contacted"
+msgstr "Đồng ý được liên hệ"
+
+msgid "Enter one capability per line."
+msgstr "Nhập mỗi năng lực trên một dòng."
+
+msgid "Enter one feature per line."
+msgstr "Nhập mỗi tính năng trên một dòng."
+
+msgid "Enter one focus area per line."
+msgstr "Nhập mỗi lĩnh vực trọng tâm trên một dòng."
+
+msgid "Enter one architecture layer per line."
+msgstr "Nhập mỗi lớp kiến trúc trên một dòng."
+
+msgid "Enter one implementation step per line."
+msgstr "Nhập mỗi bước triển khai trên một dòng."
+
+msgid "Enter one outcome per line."
+msgstr "Nhập mỗi kết quả trên một dòng."
+
+msgid "Keep enabled for illustrative scenarios. Disable only for a confirmed, approved client engagement."
+msgstr "Giữ bật cho tình huống minh họa. Chỉ tắt khi đây là dự án khách hàng đã được xác nhận và phê duyệt."
+
+msgid "Use precise, verified wording for any relationship claim."
+msgstr "Dùng thông tin chính xác, đã xác minh khi mô tả quan hệ đối tác."
+
+msgid "Localized page path, for example /vi/services/."
+msgstr "Đường dẫn trang theo ngôn ngữ, ví dụ /vi/services/."
+
+msgid "Service translation"
+msgstr "Bản dịch dịch vụ"
+
+msgid "Solution translation"
+msgstr "Bản dịch giải pháp"
+
+msgid "Product translation"
+msgstr "Bản dịch sản phẩm"
+
+msgid "Industry translation"
+msgstr "Bản dịch ngành"
+
+msgid "Case study translation"
+msgstr "Bản dịch nghiên cứu tình huống"
+
+msgid "Article translation"
+msgstr "Bản dịch bài viết"
+
+msgid "Company profile translation"
+msgstr "Bản dịch hồ sơ công ty"
+
+msgid "Site settings translation"
+msgstr "Bản dịch cài đặt website"
+
+msgid "Upload a JPG, PNG or WebP image."
+msgstr "Vui lòng tải ảnh JPG, PNG hoặc WebP."
+
+msgid "Image files must be 5 MB or smaller."
+msgstr "Dung lượng ảnh không được vượt quá 5 MB."

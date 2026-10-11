@@ -247,6 +247,55 @@ DJANGO_SECRET_KEY=&hhy1q^hs&am_4xy1aj9kkb@_^q8^v)*!&rq$(^sg%dudu)02y
 
 
 
+Bước 3. Tạo systemd service
+Nếu bạn chưa tạo service website_oot, chạy:
+sudo nano /etc/systemd/system/website_oot.service
+
+
+Với cấu trúc source hiện tại, nội dung mẫu là:
+[Unit]
+Description=Ocean One Technology Website
+After=network.target
+
+[Service]
+Type=simple
+User=usrhg
+Group=www-data
+WorkingDirectory=/opt/website_oot/website_oot
+Environment="PATH=/opt/website_oot/venv/bin"
+EnvironmentFile=/opt/website_oot/.env
+ExecStart=/opt/website_oot/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 config.wsgi:application
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+Lưu file, sau đó chạy:
+sudo systemctl daemon-reload
+sudo systemctl enable --now website_oot
+
+
+Bước 4. Kiểm tra service
+sudo systemctl status website_oot --no-pager -l
+
+
+Nếu service đang chạy, kiểm tra phản hồi HTTP:
+curl -I http://127.0.0.1:8000
+
+
+Nếu service lỗi, xem log:
+sudo journalctl -u website_oot -n 100 --no-pager
+
+
+
+
+
+
+
+
+
 
 Sau khi sửa .env, thực hiện tiếp:
 
