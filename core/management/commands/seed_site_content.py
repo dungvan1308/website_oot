@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.utils.translation import override
 from django.utils.text import slugify
 
-from core.editorial import CASE_STUDIES, INSIGHTS
-from core.homepage import INDUSTRIES, PRODUCTS, SERVICE_GROUPS, SOLUTIONS, TECHNOLOGIES
-from core.models import (
+from website_oot.core.editorial import CASE_STUDIES, INSIGHTS
+from website_oot.core.homepage import INDUSTRIES, PRODUCTS, SERVICE_GROUPS, SOLUTIONS, TECHNOLOGIES
+from website_oot.core.models import (
     Article,
     CaseStudy,
     CompanyProfile,

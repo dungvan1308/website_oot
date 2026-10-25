@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.views import about, case_studies, contact, home, industries, insights, products, services, solutions
+from website_oot.core.views import about, case_studies, contact, home, industries, insights, products, services, solutions
 
 
 urlpatterns = [path("", home, name="home"), path("about/", about, name="about")]

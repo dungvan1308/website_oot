@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from core.models import ContactRequest
+from website_oot.core.models import ContactRequest
 
 
 class ContactRequestForm(forms.ModelForm):

@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from core.models import (
+from website_oot.core.models import (
     Article,
     ArticleTranslation,
     CaseStudy,
@@ -18,7 +18,7 @@ from core.models import (
     Solution,
     SolutionTranslation,
 )
-from core.vietnamese_content import VI_CONTENT, VI_EXTRA
+from website_oot.core.vietnamese_content import VI_CONTENT, VI_EXTRA
 
 
 class Command(BaseCommand):

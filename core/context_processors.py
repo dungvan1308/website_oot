@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.urls import reverse, translate_url
 
-from core.localization import localized_content
-from core.models import CompanyProfile, SEOSetting, SiteSettings
+from website_oot.core.localization import localized_content
+from website_oot.core.models import CompanyProfile, SEOSetting, SiteSettings
 
 
 def site_metadata(request):

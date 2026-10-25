@@ -4,9 +4,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-from core.forms import ContactRequestForm
-from core.localization import localized_content
-from core.models import Article, CaseStudy, Industry, Product, Service, Solution, Statistic, Technology
+from website_oot.core.forms import ContactRequestForm
+from website_oot.core.localization import localized_content
+from website_oot.core.models import Article, CaseStudy, Industry, Product, Service, Solution, Statistic, Technology
 
 
 def _lines(value):

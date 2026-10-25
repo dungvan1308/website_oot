@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from core.models import ContactRequest
+from website_oot.core.models import ContactRequest
 
 
 class PublicPageTests(TestCase):
